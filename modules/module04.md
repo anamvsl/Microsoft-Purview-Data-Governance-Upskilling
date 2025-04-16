@@ -13,45 +13,40 @@ Once sources have been registered and scanned, the underlying catalog will begin
 
 Data curation involves systematically organizing and managing data assets to ensure they are of high quality, accurate, and reliable. This process includes enhancing the data for presentation by adding metadata such as descriptions, tags, classifications, lineage information, etc. making the data more discoverable and usable for end users.
 
-Given that data is generated across various areas of a business, it is crucial to consider the curation lifecycle before initiating the process.
-
-Historically, data governance and curation were handled by a central team, starting from the enterprise data model and aiming to represent a comprehensive view of the organization's processes and functions. This method was often slow, costly, difficult to scale, and frequently failed to deliver the anticipated value. Microsoft's recommendation is to shift to a [federated governance model](https://learn.microsoft.com/purview/what-is-data-catalog#:~:text=we%20believe%20in%20a%20federated%20governance%20approach%3A%20providing%20a%20centralized%20place%20to%20develop%20data%20safety%2C%20quality%2C%20and%20standards%2C%20but%20providing%20tools%20to%20create%20self%2Dservice%20access%20control%2C%20discoverability%2C%20and%20maintenance.), empowering the business to take ownership of their data. A federated data governance approach distributes ownership across the business, reducing bottlenecks and encouraging active participation in the lifecycle of managing, governing, consuming, and applying data.
-
-In this module, you'll learn the importance of data curation, including the process involved in organizing and managing data assets to ensure their quality, accuracy, and reliability. With this, you will learn how to enrich data with metadata such as descriptions, tags, classifications, lineage information, and owners, making the data more discoverable and usable for end users.
+Given that data is generated across various areas of a business, it is crucial to consider the curation lifecycle before initiating the process. In this module, you'll learn the importance of data curation, including the process involved in organizing and managing data assets to ensure their quality, accuracy, and reliability. With this, you will learn how to enrich data with metadata such as descriptions, tags, classifications, lineage information, and owners, making the data more discoverable and usable for end users.
 
 ## :thinking: Prerequisites
 
 * An [Azure account](https://azure.microsoft.com/free/) with an active subscription.
-* A Microsoft Purview account (see [module 01](../modules/module01.md)).
-* A Microsoft Purview catalog with some assets (see [module 02](../modules/module02.md)).
+* A Microsoft Purview account (see [module 00](../modules/module00.md)).
+* A completed scan on registered Data Sources (see [module 02](../modules/module02.md)).
 
 ## :dart: Objectives
 
-* Search the catalog by keyword.
-* Browse the catalog by source.
-* Update an existing asset.
-* Perform a bulk edit operation.
+* Search Unified Catalog for Data Assets.
+* Browse by source.
+* Update an existing data asset.
 
 ## :bookmark_tabs: Table of Contents
 
 | #  | Section | Role |
 | --- | --- | --- |
-| 1 | [Search Catalog](#1-search-catalog) | Data Reader |
-| 2 | [Update an Asset](#2-update-an-asset) | Data Curator |
-| 3 | [Browse Assets](#3-browse-assets) | Data Reader |
-| 4 | [Bulk Edit](#4-bulk-edit) | Data Curator |
+| 1 | [Search Unified Catalog]() | Data Reader |
+| 2 | [Edit/Update an Asset]() | Data Curator |
+| 3 | [Browse Assets]() | Data Reader |
+
 
 <div align="right"><a href="#module-03---search--browse">↥ back to top</a></div>
 
-## 1. Search Catalog
+## 1. Search Unified Catalog
 
-1. Open the **Microsoft Purview Governance Portal**, navigate to **Data Catalog** > **Home**, type the asterisk character (**\***) into the search bar, and hit **Enter**.
+1. Open the **Microsoft Purview Governance Portal**, navigate to **Unified Catalog** > **Discovery** > **Data assets**, type the asterisk character (**\***) into the search bar, and hit **Enter**.
 
-    ![Search Wildcard](../images/module03/03.01-search-wildcard.png)
+    ![Discovery](../images/module4/M4.01.png)
 
-2. Filter the search results by **Classification** (e.g. **Country/Region**) and click the hyperlinked asset name to view the details (e.g. `QueriesByState`).
+2. Filter the search results by **Data Source type** (e.g. **Azure SQL DB**), and click the hyperlinked asset name to view the details (e.g. `Customer`).
 
-    ![Filter by Classification](../images/module03/03.02-search-filter.png)
+    ![Select Asset](../images/module4/M4.002.png)
 
 > :bulb: **Did you know?**
 >
@@ -59,69 +54,127 @@ In this module, you'll learn the importance of data curation, including the proc
 
 <div align="right"><a href="#module-03---search--browse">↥ back to top</a></div>
 
-## 2. Update an Asset
+## 2. Edit/Update an Asset
 
 1. Click **Edit** to modify the asset details.
 
-    ![Edit Asset](../images/module03/03.03-asset-edit.png)
-
-2. Update the **Description** by copying and pasting the sample text below.
+    ![Edit Asset](../images/module4/M4.003.png)
+   
+3. Update the **Description** by copying and pasting the sample text below.
 
     ```text
-    This dataset was curated from the Bing search logs (desktop users only) over the period of Jan 1st, 2020 – (Current Month - 1). Only searches that were issued many times by multiple users were included. The dataset includes queries from all over the world that had an intent related to the Coronavirus or Covid-19. In some cases this intent is explicit in the query itself (e.g., “Coronavirus updates Seattle”), in other cases it is implicit , e.g. “Shelter in place”
+    The "Customer" table contains detailed information about customers. This table provides essential details about customers, including their contact information and the associated salesperson, which can be useful for customer relationship management and sales analysis.
     ```
 
-    ![Update Description](../images/module03/03.04-asset-description.png)
+    ![Update Description](../images/module4/M4.004.png)
 
-3. Assign a **Classification** (e.g. `World Cities`) using the drop-down menu.
+4. Assign a **Classification** (e.g. `All Full Names`) using the drop-down menu.
 
-    ![Update Classification](../images/module03/03.05-asset-classification.png)
+    ![Update Classification](../images/module4/M4.05.png)
+   
+    > :bulb: **Did you know?**
+    >
+    > Microsoft Purview automatically applies **classifications** to some assets during the scanning process, but there are some scenarios when you may want to manually apply more classifications. For example, Microsoft Purview doesn't automatically apply classifications to table assets (only their columns), or you might want to apply custom classifications.
 
-4. Navigate to the **Schema** tab and update the **Asset description** for each column using the sample text below.
+6. Navigate to the **Schema** tab and update the **Asset description** for each column using the sample text below.
 
     > :bulb: **Did you know?**
     >
     > **Classifications** and **Glossary Terms** can be assigned at the asset level (e.g. a Table within a Database) as well as at the schema level (e.g. a Column within a Table Schema).
 
-    ![Update Schema](../images/module03/03.06-asset-schema.png)
+    ![Update Schema](../images/module4/M4.06.png)
 
-    **Date**
-
-    ```text
-    Date on which the query was issued.
-    ```
-
-    **Query**
+    **Customer ID**
 
     ```text
-    The actual search query issued by user(s).
+    Customer identification number.
     ```
 
-    **IsImplicitIntent**
+    **Name Style**
 
     ```text
-    True if query did not mention covid or coronavirus or sarsncov2 (e.g, “Shelter in place”). False otherwise.
+    Preferred customer name. If FALSE, it is unspecified.
     ```
 
-    **State**
+    **Title**
 
     ```text
-    State from where the query was issued.
+    Title of the customer.
     ```
 
-    **Country**
+    **First Name**
 
     ```text
-    Country from where the query was issued.
+   First Name of the customer.
     ```
 
-    **PopularityScore**
+    **Middle Name**
 
     ```text
-    Value between 1 and 100 inclusive. 1 indicates least popular query on the day/State/Country with Coronavirus intent, and 100 indicates the most popular query for the same geography on the same day.
+    Middle Name initials of the customer.
     ```
 
-5. Navigate to the **Contacts** tab and set someone within your organization to be an **Expert** and an **Owner**. Click **Save**.
+    **Last Name**
+
+    ```text
+    Last Name of the customer.
+    ```
+
+     **Suffix**
+
+    ```text
+    Suffix of the customer.
+    ```
+
+     **Company name**
+
+    ```text
+    Company name at which the customer works at.
+    ```
+
+     **Sales Person**
+
+    ```text
+    Designated sales person to the customer.
+    ```
+
+    **Email Address**
+
+    ```text
+    Email address of the customer.
+    ```
+
+    **Phone**
+
+    ```text
+    Contact number of the customer.
+    ```
+
+    **Password Hash**
+
+    ```text
+    Hashed version of the customer password.
+    ```
+
+    **Password Salt**
+
+    ```text
+   Random strings added to passwords before hashing.
+    ```
+
+    **Rowguid**
+
+    ```text
+    Value used as an identifier of customer record.
+    ```
+
+     **Rowguid**
+
+    ```text
+    Value used as an identifier of customer record.
+    ```
+
+7. Navigate to the **Contacts** tab and set someone within your organization to be an **Expert** and an **Owner**. Click **Save**.
 
     > :bulb: **Did you know?**
     >
@@ -132,37 +185,20 @@ In this module, you'll learn the importance of data curation, including the proc
     >
     > For assets in which you are tagged as a **Contact**, these will appear on the home screen (Data catalog), under **My items**.
 
-    ![Update Contacts](../images/module03/03.07-asset-contacts.png)
+    ![Update Contacts](../images/module4/M4.07.png)
 
-6. To see other assets within the same path, navigate to the **Related** tab.
+8. To see other assets within the same path, navigate to the **Related** tab.
 
-    ![Related Assets](../images/module03/03.08-asset-related.png)
+    ![Related Assets](../images/module4/M4.08.png)
 
-<div align="right"><a href="#module-03---search--browse">↥ back to top</a></div>
+9. Let's add a few tags to the data asset. Click on **Add Tag**, and type in the following: **Customer**, **Customer_Contact**, **Customer_Information**
 
-## 3. Browse Assets
+    ![Tags](../images/module4/M4.09.png)
 
-While the search experience is ideal for keyword based discovery, the Microsoft Purview Governance Portal allows alternate methods of browsing assets (i.e. by collection OR by source type).
+<div align="right"><a href="">↥ back to top</a></div>
 
-1. Open the **Microsoft Purview Governance Portal**, navigate to **Data Catalog** and click **Browse**.
 
-    ![Browse Assets](../images/module03/03.09-home-browse.png)
-
-2. Switch to the **By source type** tab and select a **source** (e.g. `Azure Data Lake Storage Gen2`).
-
-    ![ADLS Gen2](../images/module03/03.10-browse-adls.png)
-
-3. Select an **account** (e.g. `pvlab{randomId}adls`).
-
-    ![ADLS Gen2 Account](../images/module03/03.11-browse-account.png)
-
-4. Select a **container** (e.g. `raw`).
-
-    ![ADLS Gen2 Container](../images/module03/03.12-browse-container.png)
-
-<div align="right"><a href="#module-03---search--browse">↥ back to top</a></div>
-
-## 4. Bulk Edit
+## 3. Bulk Edit
 
 Microsoft Purview allows us to perform certain operations (add/replace/remove) against a subset of attributes (Expert, Owner, Term, Classification) in bulk directly within the Microsoft Purview Governance Portal.
 
