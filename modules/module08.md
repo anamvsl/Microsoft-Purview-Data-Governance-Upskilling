@@ -172,25 +172,24 @@ Navigate to the Thresholds tab to begin configuring your health control threshol
 
 **2.3 Configure Control Rules**
 
-1. **Select the Thresholds Tab**
-Navigate to the Rules tab to begin configuring your health control rules.
-
+1. **Select the Rules Tab**
+  * Navigate to the Rules tab to begin configuring your health control rules.
+  * Click on Add Rules
 
     ![Health Management Actions](../images/module08/08.02-EditControlRules.png)
 
-2. **Search New Rule**
+3. **Search New Rule**
    * Search rule from the Data Product rules list and select the rule to add.
-   * Click on New threshold
-
+     
     ![Health Management Actions](../images/module08/08.02-EditControlRules_1.png)
 
-3. **Add New Thresholds:**
-    * Add new thresholds as shown below :
+4. **Add New Rule:**
+    * In this example we will select the rule - *Data product has data access policy* :
 
     ![Health Management Actions](../images/module08/08.02-EditControlRules_2.png)
 
 1. **Save Your Changes:**
-* Click Save to apply and confirm the new rule. 
+* Confirm and Save to apply the new rule. 
 
     ![Health Management Actions](../images/module08/08.02-EditControlRules_3.png)
 
