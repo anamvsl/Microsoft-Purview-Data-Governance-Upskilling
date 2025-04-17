@@ -15,15 +15,14 @@ By the end of this lab, you will have created a data product, added assets to it
 - An [Azure account](https://portal.azure.com) with an active subscription.
 - A Microsoft Purview account.
 - You are a **Data Product Owner** in at least one governance domain.
-- Optional: Some curated data assets available in your catalog.
+- Optional: Some curated data assets available in your catalog, such as the **AdventureWorksLT** dataset.
 
 ---
 
 ## 🎯 Objectives
 
-- Create a draft data product.
-- Enter business metadata and ownership details.
-- Associate with a governance domain.
+- Create a data product.
+- Enter relevant metadata including descriptions and business use cases
 - Add underlying data assets.
 - Define access policy rules and approvers.
 - Publish the data product.
@@ -55,14 +54,20 @@ By the end of this lab, you will have created a data product, added assets to it
 
 ## 2. Add Basic Details
 
-On the **Basic details** page:
+On the **Basic details** page, enter the following:
 
-- **Name**: Enter a descriptive name for your data product.
-- **Description**: Explain where the data came from, what it represents, and its purpose from a business standpoint.
-- **Type**: Choose the data product type from the dropdown.
-- **Owners**: Select one or more individuals or groups to own this data product.
+- **Name**: `Customer Order Summary`
+- **Description**:
+  > Combines customer, order, and product line item data from the AdventureWorksLT dataset. Designed to support analytics and reporting for sales performance, customer behavior, and product demand across geographic regions.
 
-Select **Next**.
+- **Type**: `Transactional dataset`
+
+> 🧠 **Why this is 'Transactional dataset':**  
+> The core tables in this data product (`SalesOrderHeader` and `SalesOrderDetail`) represent timestamped business events — customer purchases. Each row records details like product, quantity, and unit price, making this a classic transactional dataset. It is not a master list, model, or report — it's raw transactional data ready for analytical use.
+
+- **Owners**: Assign yourself or a relevant group (e.g., `Sales Analytics Team`)
+
+Click **Next**.
 
 📸 *TODO Insert screenshot of filled-out basic details*
 
@@ -72,84 +77,126 @@ Select **Next**.
 
 On the **Business details** page:
 
-- **Governance domain**: Choose the domain your data product should belong to.
-- **Business use case**: Describe how this data can be used, any filters/dimensions available, and what it’s suitable for.
-- (Optional) Check **Mark as Endorsed** if this data product is validated internally.
+- **Governance domain**: `Sales` (or a domain you’ve already created)
+- **Business use case**:
+  > This data product supports cross-functional analytics for the sales and marketing teams. It enables:
+  >
+  > - Identifying top-spending customers  
+  > - Analyzing seasonal trends and purchasing patterns  
+  > - Generating regional sales summaries  
+  > - Segmenting customers by product category  
+  >
+  > **Example Scenario**:  
+  > A marketing analyst wants to find all orders placed by customers located in Washington state in the past 6 months, grouped by product.
+  >
+  > **SQL Behind the Scenes**:
+  > ```sql
+  > SELECT 
+  >     c.CompanyName,
+  >     p.Name AS ProductName,
+  >     soh.OrderDate,
+  >     sod.OrderQty,
+  >     sod.LineTotal,
+  >     a.StateProvince
+  > FROM SalesLT.Customer AS c
+  > JOIN SalesLT.SalesOrderHeader AS soh ON c.CustomerID = soh.CustomerID
+  > JOIN SalesLT.SalesOrderDetail AS sod ON soh.SalesOrderID = sod.SalesOrderID
+  > JOIN SalesLT.Product AS p ON sod.ProductID = p.ProductID
+  > JOIN SalesLT.CustomerAddress AS ca ON c.CustomerID = ca.CustomerID
+  > JOIN SalesLT.Address AS a ON ca.AddressID = a.AddressID
+  > WHERE a.StateProvince = 'Washington'
+  >   AND soh.OrderDate >= DATEADD(MONTH, -6, GETDATE())
+  > ORDER BY soh.OrderDate DESC
+  > ```
 
-Select **Create**.
+- (Optional) Check **Mark as Endorsed** if validated by governance stakeholders.
 
-📸 *TODO Insert screenshot of governance domain and use case filled in*
+Click **Create**.
+
+📸 *TODO Insert screenshot of business use case page filled out*
 
 ---
 
 ## 4. Add Data Assets
 
-Data products group one or more curated data assets to improve discoverability and reuse.
+1. In `Catalog management` > `Data products`, open the **Customer Order Summary** draft.
+2. Scroll to the **Assets** section and select **Add data assets**.
+3. Use the search bar to locate and add the following assets:
 
-To add data assets:
+| Asset Name             | Purpose                                 |
+|------------------------|-----------------------------------------|
+| `SalesOrderHeader`     | Order-level details with `CustomerID`   |
+| `SalesOrderDetail`     | Line items, quantity, price             |
+| `Customer`             | Customer metadata                       |
+| `CustomerAddress`      | Customer-address mapping                |
+| `Address`              | Location for segmentation (e.g., state) |
+| `Product` *(optional)* | Product name and category               |
 
-1. In `Catalog management` > `Data products`, select your draft data product.
-2. Click **Add data assets** below the description.
-3. Use the search bar or filters to find assets.
-4. Select the desired assets and click **Add**.
+4. Select each asset and click **Add**.
 
-> 💡 Only assets that belong to the same governance domain or that you have permission to see will be searchable.
-
-📸 * TODO Insert screenshot of asset picker and added assets*
+📸 *TODO Insert screenshot of asset picker showing selected tables*
 
 ---
 
 ## 5. Set Access Policy
 
-Access policies define how data consumers can request and gain access to this product.
+1. Open your draft data product and click **Manage policies**.
 
-> ✅ You must **configure access policies while the data product is in draft**.
+Configure access as follows:
 
-To configure the policy:
+- **Permitted access**:
+  - Usage purposes: `Sales Analytics`, `Marketing Insights`
 
-1. Open your draft data product.
-2. Click **Manage policies**.
+- **Approval requirements**:
+  - Require manager approval: ✅
+  - Require privacy review: ❌
+  - Approvers: Add individual(s) or group (e.g., `SalesGovernanceTeam@contoso.com`)
 
-Within the policy editor:
+- **Access provider**:
+  - Optional — select a team or service principal responsible for provisioning access
 
-- Under **Permitted access**, define usage purposes (e.g. "Marketing Analytics", "Operational Insights").
-- Under **Approval requirements**, choose:
-  - Whether manager or privacy review is required.
-  - Approvers (can be users, Entra ID groups, etc.)
-  - Optional: Set an **Access provider** to manually grant access to data assets.
-- Under **Attestations**, configure whether data copies are allowed, terms of use, and other acknowledgements.
+- **Attestations**:
+  - Terms of use: Enable (e.g., “Data may not be redistributed outside the Sales department”)
+  - Copy allowed: ❌
+  - Reuse across domains: ✅
 
 > 👀 **Preview the request form**  
-> Before saving, you can select **Preview request form** to see what users will experience when they request access to your data product. This helps validate that your configuration is clear and complete.
+> Use this option to see how the request experience looks to data consumers.
 
-📸 * TODO Insert screenshot of policy settings and preview window*
+Click **Save changes**.
 
-Click **Save changes** when done.
+📸 *TODO Insert screenshot of configured access policy*
 
 ---
 
 ## 6. Review and Publish
 
-Now that your data product has:
+Once everything is configured:
 
-- Metadata (basic + use case),
-- Data assets attached,
-- A defined access policy,
+- Metadata ✅  
+- Assets ✅  
+- Access Policy ✅
 
-...you can publish it.
+1. Return to the data product **Overview**.
+2. Click **Publish** in the top-right corner.
 
-1. Return to the product overview.
-2. Click **Publish** in the top right corner.
+Your data product will now appear in the Unified Catalog and will be available for discovery and access requests.
 
-Your data product is now discoverable in the Unified Catalog and available for access requests.
-
-📸 *TODO Insert screenshot of the published data product*
+📸 *TODO Insert screenshot of published data product*
 
 ---
 
 ## 🎉 Summary
 
-This module provided an overview of how to create and manage data products in Microsoft Purview. You learned how to define business metadata, associate curated data assets, configure access policies, and publish the product for discovery and use across your organization.
+In this module, you:
+
+- Created a data product draft
+- Entered metadata and a real-world business use case
+- Added curated AdventureWorksLT assets
+- Configured access policies and previewed the request form
+- Published the product for internal use
+
+This approach ensures data consumers discover well-defined, governed, and business-aligned data products in the catalog.
 
 ---
 
