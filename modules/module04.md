@@ -1,7 +1,7 @@
 
 # Module 4 - Curating Data Assets
 
-[< Previous Module](../modules/module02b.md) - **[Home](../README.md)** - [Next Module >](../modules/module04.md)
+[< Previous Module](../modules/module03.md) - **[Home](../README.md)** - [Next Module >](../modules/module05.md)
 
 **⏰ Duration:** 20 minutes
 
@@ -33,7 +33,7 @@ Given that data is generated across various areas of a business, it is crucial t
 | --- | --- | --- |
 | 1 | [Search Unified Catalog]() | Data Reader |
 | 2 | [Edit/Update an Asset]() | Data Curator |
-| 3 | [Browse Assets]() | Data Reader |
+| 3 | [Bulk edit]() | Data Reader |
 
 
 <div align="right"><a href="#module-03---search--browse">↥ back to top</a></div>
@@ -200,65 +200,32 @@ Given that data is generated across various areas of a business, it is crucial t
 
 ## 3. Bulk Edit
 
-Microsoft Purview allows us to perform certain operations (add/replace/remove) against a subset of attributes (Expert, Owner, Term, Classification) in bulk directly within the Microsoft Purview Governance Portal.
+Microsoft Purview allows us to perform certain operations (add/replace/remove) against a subset of attributes (Expert, Owner, Term, Classification, Certified) in bulk directly within the Microsoft Purview Governance Portal.
 
-1. Open the **Microsoft Purview Governance Portal**, navigate to **Data Catalog** > **Home**, type the asterisk character (**\***) into the search bar, and hit **Enter**.
+1. Open the **Microsoft Purview Governance Portal**, navigate to **Unified Catalog** > **Discovery** > **Data assets**, type the asterisk character (**\***) into the search bar, and hit **Enter**.
 
-    ![Search Wildcard](../images/module03/03.01-search-wildcard.png)
+    ![Discovery](../images/module4/M4.01.png)
 
-2. Filter the results to **File** and **Table**, select the first five items in the search results, and click **View selected**.
+2. Filter the search results by **Data Source type** (e.g. **Azure SQL DB**), select the first five items in the search results, and click **View selected**.
 
-    ![View Selected](../images/module03/03.13-bulk-view.png)
+    ![View Selected](../images/module4/M4.1.png)
 
 3. Click **Bulk edit**.
 
-    ![Bulk Edit](../images/module03/03.14-bulk-edit.png)
+    ![Bulk Edit](../images/module4/M4.2.png)
 
 4. Set the **Attribute** to `Owner`, set **Operation** to `Add`, select one or more users in your organization, and click **Apply**.
 
-    ![Apply Changes](../images/module03/03.15-bulk-apply.png)
+    ![Apply Changes](../images/module4/M4.3.png)
 
 5. Click **Deselect all and close**.
 
-    ![Deselect](../images/module03/03.16-bulk-deselect.png)
+    ![Deselect](../images/module4/M4.4.png)
 
-<div align="right"><a href="#module-03---search--browse">↥ back to top</a></div>
-
-## :mortar_board: Knowledge Check
-
-[https://aka.ms/purviewlab/q03](https://aka.ms/purviewlab/q03)
-
-1. There are a number of **attributes** that we can use to narrow our search results via the **filter pane**, which of the following is **not** available as a quick filter?
-
-    A ) Source Type  
-    B ) Classification  
-    C ) Size  
-
-2. Using the Microsoft Purview Governance Portal (UI), you can edit an asset and manually update an assets **Description**?
-
-    A ) True  
-    B ) False  
-
-3. Using the Microsoft Purview Governance Portal (UI), you can edit an asset and manually add and remove **Classifications**?
-
-    A ) True  
-    B ) False  
-
-4. Using the Microsoft Purview Governance Portal (UI), you can edit an asset and manually update an assets **Technical Properties** (e.g. qualifiedName, partitionCount, totalSizeBytes, etc)?
-
-    A ) True  
-    B ) False  
-
-5. Assets in the catalog can be assigned contacts, which of the following is an **invalid contact type**?
-
-    A ) Expert  
-    B ) Owner  
-    C ) Reader  
-
-<div align="right"><a href="#module-03---search--browse">↥ back to top</a></div>
+<div align="right"><a href="# Module 4 - Curating Data Assets">↥ back to top</a></div>
 
 ## :tada: Summary
 
 This module provided an overview of how to search, browse, and update assets.
 
-[Continue >](../modules/module04.md)
+[Continue >](../modules/module05.md)
