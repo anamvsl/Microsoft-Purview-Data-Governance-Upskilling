@@ -1,4 +1,4 @@
-# Lab Setup - Module 00
+# Lab Setup - Module 01
 
 **[Home](../README.md)** - [Next Module >](../modules/module01.md)
 
