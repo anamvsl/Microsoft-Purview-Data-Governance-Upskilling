@@ -1,4 +1,4 @@
-# Module 4 - Curating Data Assets
+# Module 4 - Governance Domains
 
 [< Previous Module](../modules/module04.md) - **[Home](../README.md)** - [Next Module >](../modules/module06.md)
 
