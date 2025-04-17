@@ -149,20 +149,33 @@ Click Save to apply and confirm the updated control status.
 
     ![Health Management Actions](../images/module08/08.02-EditControlActive.png)
 
-**2.3 Configure Control Thresholds**
+**2.3 Configure Thresholds**
 
-To prevent a control from contributing new scores to its control group roll-up, you can deactivate it by following these steps:
+1. **Select the Thresholds Tab**
+Navigate to the Thresholds tab to begin configuring your health control thresholds.
 
-1. **Toggle Active Status:**
-Use the Active switch to change the control’s status to inactive (or re-enable it if needed).
-2. **Save Your Changes:**
-Click Save to apply and confirm the updated control status.
 
-    ![Health Management Actions](../images/module08/08.02-EditControlActive.png)
+    ![Health Management Actions](../images/module08/08.02-EditControlThreshold.png)
+
+2. **Set Target Score and configure New threshold**
+   * Set Target Score of 80 
+   * Click on New threshold
+
+    ![Health Management Actions](../images/module08/08.02-EditControlThreshold_2.png)
+
+3. **Add New Thresholds:**
+    * Add new thresholds as shown below :
+
+    ![Health Management Actions](../images/module08/08.02-EditControlThreshold_3.png)
+
+1. **Save Your Changes:**
+* Click Save to apply and confirm the new threshold. 
+
+    ![Health Management Actions](../images/module08/08.02-EditControlThreshold_4.png)
 
 
 ## :tada: Summary
 
-This module provided an overview of how to use the Health Actions tool to manage the actions required to improve the health of your data estate.
+This module provided understanding of the importance of data estate health and how Health control in Microsoft Purview provides tools to effectively manage and maintain it.
 
 [Continue >](../modules/module11.md)
