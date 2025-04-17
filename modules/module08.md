@@ -12,8 +12,6 @@ These controls are a key part of a broader data governance framework, ensuring d
 
 ## :thinking: Prerequisites
 
-* An [Azure account](https://azure.microsoft.com/free/) with an active subscription.
-* A Microsoft Purview account (see [module 02](../modules/module02.md)).
 * Set up and completed all previous modules.
 * You need **data health reader** permissions to be able to view Data Estate Health information.
 * You need **data health owner** permissions to be able to update or edit any health controls.
