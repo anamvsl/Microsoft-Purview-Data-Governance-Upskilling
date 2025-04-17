@@ -197,4 +197,4 @@ Navigate to the Thresholds tab to begin configuring your health control threshol
 
 This module provided understanding of the importance of data estate health and how Health control in Microsoft Purview provides tools to effectively manage and maintain it.
 
-[Continue >](../modules/module11.md)
+[Continue >](../modules/module09.md)
