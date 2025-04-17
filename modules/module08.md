@@ -28,9 +28,8 @@ These controls are a key part of a broader data governance framework, ensuring d
 
 | #  | Section | Role |
 | --- | --- | --- |
-| 1 | [Review available health controls](#1-view-health-management-actions) | Data Health Reader |
-| 2 | [Assign health management actions](#2-assign-health-management-actions) | Data Health Reader |
-| 3 | [Change status health management actions](#3-change-status-health-management-actions) | Data Health Reader |
+| 1 | [Review available health controls](#1-review-available-Health-Controls) | Data Health Reader |
+| 2 | [Editing Health Controls](#2-editing-health-controls) | Data Health Owner |
 
 [↥ back to top](#module-10---health-management-actions)
 
@@ -171,6 +170,29 @@ Navigate to the Thresholds tab to begin configuring your health control threshol
 
     ![Health Management Actions](../images/module08/08.02-EditControlThreshold_4.png)
 
+**2.3 Configure Control Rules**
+
+1. **Select the Thresholds Tab**
+Navigate to the Rules tab to begin configuring your health control rules.
+
+
+    ![Health Management Actions](../images/module08/08.02-EditControlRules.png)
+
+2. **Search New Rule**
+   * Search rule from the Data Product rules list and select the rule to add.
+   * Click on New threshold
+
+    ![Health Management Actions](../images/module08/08.02-EditControlRules_1.png)
+
+3. **Add New Thresholds:**
+    * Add new thresholds as shown below :
+
+    ![Health Management Actions](../images/module08/08.02-EditControlRules_2.png)
+
+1. **Save Your Changes:**
+* Click Save to apply and confirm the new rule. 
+
+    ![Health Management Actions](../images/module08/08.02-EditControlRules_3.png)
 
 ## :tada: Summary
 
