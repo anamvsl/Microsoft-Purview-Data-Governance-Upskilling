@@ -28,7 +28,7 @@
 
 | #  | Section | Role |
 | --- | --- | --- |
-| 1 | [Data Quality Lifecycle](#1-data-quality-lifecycle) | Read Access to Data |
+| 1 | [Data Quality Lifecycle](#1-data-quality-lifecycle) | Data Quality Steward |
 | 2 | [Data Source Connection Configuration](#2-data-source-connection-configuration) | Read Access to Data |
 | 3 | [Data Profiling](#3-data-profiling) | Data Quality Steward |
 | 4 | [Data Quality Rules](#4-data-quality-rules) | Data Quality Steward |
