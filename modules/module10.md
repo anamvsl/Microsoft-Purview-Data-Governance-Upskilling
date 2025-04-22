@@ -2,6 +2,8 @@
 
 [< Previous Module](../modules/module09.md) - **[Home](../README.md)** - [Next Module >](../modules/module11.md)
 
+**⏰ Duration:** 10 minutes
+
 ## :loudspeaker: Introduction
 
  Unified Catalog **Action** displays all health management actions related to catalog metadata, controls, and data quality. Health management actions give you and your users steps to take to improve data health and governance across your data estate.
