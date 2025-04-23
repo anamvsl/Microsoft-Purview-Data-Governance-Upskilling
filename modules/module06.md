@@ -48,7 +48,7 @@ By the end of this lab, you will have created a data product, added assets to it
 2. Navigate to `Catalog management` > `Data products`.
 3. Select **+ New data product**.
 
-📸 *TODO Insert screenshot here showing navigation to "Data products"*
+- ![Purview Managing Data Sources](../images/module06/6.1.png)
 
 ---
 
@@ -57,19 +57,22 @@ By the end of this lab, you will have created a data product, added assets to it
 On the **Basic details** page, enter the following:
 
 - **Name**: `Customer Order Summary`
-- **Description**:
-  > Combines customer, order, and product line item data from the AdventureWorksLT dataset. Designed to support analytics and reporting for sales performance, customer behavior, and product demand across geographic regions.
+- **Description**: `Combines customer, order, and product line item data from the AdventureWorksLT dataset. Designed to support analytics and reporting for sales performance, customer behaviour, and product demand across geographic regions.`
 
 - **Type**: `Transactional dataset`
 
-> 🧠 **Why this is 'Transactional dataset':**  
-> The core tables in this data product (`SalesOrderHeader` and `SalesOrderDetail`) represent timestamped business events — customer purchases. Each row records details like product, quantity, and unit price, making this a classic transactional dataset. It is not a master list, model, or report — it's raw transactional data ready for analytical use.
+🧠 Why this is 'Transactional dataset':
+The core tables in this data product (`SalesOrderHeader` and `SalesOrderDetail`) represent timestamped business events — customer purchases. Each row records details like product, quantity, and unit price, making this a classic transactional dataset. It is not a master list, model, or report — it's raw transactional data ready for analytical use.
 
-- **Owners**: Assign yourself or a relevant group (e.g., `Sales Analytics Team`)
+- **Audience**: `BI Engineer`,`Data Analyst`, `Business User`, `Business Analyst`
+
+🧠 The audience are the consumers. These people won’t necessarily manage or produce the data — that’s the owner/steward role — but rather consume or build insights from it.
+
+- **Owners**: Assign yourself or a relevant Entra group (e.g., `Sales Analytics Team`)
+
+- ![Purview Managing Data Sources](../images/module06/6.2.png)
 
 Click **Next**.
-
-📸 *TODO Insert screenshot of filled-out basic details*
 
 ---
 
@@ -77,7 +80,7 @@ Click **Next**.
 
 On the **Business details** page:
 
-- **Governance domain**: `Sales` (or a domain you’ve already created)
+- **Governance domain**: `Sales` (or another domain you’ve created)
 - **Business use case**:
   > This data product supports cross-functional analytics for the sales and marketing teams. It enables:
   >
@@ -111,9 +114,11 @@ On the **Business details** page:
 
 - (Optional) Check **Mark as Endorsed** if validated by governance stakeholders.
 
+- ![Purview Managing Data Sources](../images/module06/6.3.png)
+
 Click **Create**.
 
-📸 *TODO Insert screenshot of business use case page filled out*
+🎉 Congratulations! You have successfully created your first data product. However, as it states, you must perform the next steps listed, 'Add data assets' and 'Set up a data access policy' before you can begin sharing (read Publish) with others.
 
 ---
 
@@ -121,6 +126,7 @@ Click **Create**.
 
 1. In `Catalog management` > `Data products`, open the **Customer Order Summary** draft.
 2. Scroll to the **Assets** section and select **Add data assets**.
+- ![Purview Managing Data Sources](../images/module06/6.4.png)
 3. Use the search bar to locate and add the following assets:
 
 | Asset Name             | Purpose                                 |
@@ -132,9 +138,9 @@ Click **Create**.
 | `Address`              | Location for segmentation (e.g., state) |
 | `Product` *(optional)* | Product name and category               |
 
-4. Select each asset and click **Add**.
+- Select each asset and add them by ticking the checkbox.
 
-📸 *TODO Insert screenshot of asset picker showing selected tables*
+- ![Purview Managing Data Sources](../images/module06/6.5.png)
 
 ---
 
@@ -142,47 +148,46 @@ Click **Create**.
 
 1. Open your draft data product and click **Manage policies**.
 
-Configure access as follows:
+Configure access as follows (mostly default values):
 
 - **Permitted access**:
-  - Usage purposes: `Sales Analytics`, `Marketing Insights`
-
+  - Usage purposes: `Assessing Fit`, `Critical Reporting`, `Directional Insights`
+- **Access time limit**: `30 days`
 - **Approval requirements**:
-  - Require manager approval: ✅
-  - Require privacy review: ❌
-  - Approvers: Add individual(s) or group (e.g., `SalesGovernanceTeam@contoso.com`)
+  - Require manager approval: `❌`
+  - Require privacy review: `❌`
+  - Approvers: Add individual(s) or group - `SalesGovernanceTeam@contoso.com`)
+- **Access request approvers**: `Select an individual or teamresponsible for reviewing acccess requests`
+  **Data Access provider**: `Select an individual or teamresponsible for provisoning accces.` 
 
-- **Access provider**:
-  - Optional — select a team or service principal responsible for provisioning access
-
-- **Attestations**:
-  - Terms of use: Enable (e.g., “Data may not be redistributed outside the Sales department”)
-  - Copy allowed: ❌
-  - Reuse across domains: ✅
+- **Digital Attestations**:
+  - Permit data copies: `✅`
+- ![Purview Managing Data Sources](../images/module06/6.6.png)
 
 > 👀 **Preview the request form**  
 > Use this option to see how the request experience looks to data consumers.
 
-Click **Save changes**.
+- ![Purview Managing Data Sources](../images/module06/6.7.png)
 
-📸 *TODO Insert screenshot of configured access policy*
+Click **Save changes**.
 
 ---
 
 ## 6. Review and Publish
 
 Once everything is configured:
-
-- Metadata ✅  
+  
 - Assets ✅  
-- Access Policy ✅
+- Access Policy  
 
 1. Return to the data product **Overview**.
 2. Click **Publish** in the top-right corner.
 
+- ![Purview Managing Data Sources](../images/module06/6.8.png)
+
 Your data product will now appear in the Unified Catalog and will be available for discovery and access requests.
 
-📸 *TODO Insert screenshot of published data product*
+- ![Purview Managing Data Sources](../images/module06/6.9.png)
 
 ---
 
