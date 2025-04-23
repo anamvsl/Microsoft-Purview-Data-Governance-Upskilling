@@ -1,7 +1,8 @@
-# Lab Setup - Module 01
+# Module 01 - Lab Setup
 
 **[Home](../README.md)** - [Next Module >](../modules/module02.md)
 
+**⏰ Duration:** 15 minutes
 
 ## Introduction
 
@@ -118,3 +119,5 @@ You’ve now:
 - Deployed a sample SQL environment into your own Azure tenant
 
 You're ready to begin exploring core Purview capabilities including cataloging, classification, and lineage.
+
+👉 [Continue to Module 2: Designing the Data Map](../modules/module02.md)

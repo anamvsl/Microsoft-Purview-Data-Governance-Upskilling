@@ -13,7 +13,7 @@ In this module, you will design the Microsoft Purview Data Map — the foundatio
 
 ---
 
-## ✅ Learning Objectives
+## ✅ Objectives
 
 By the end of this module, you will be able to:
 
