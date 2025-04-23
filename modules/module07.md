@@ -1,4 +1,4 @@
-# 📘 Module 7 – Creating and Manage Glossary Terms
+# 📘 Module 7 – Creating and Managing Glossary Terms and OKRs
 
 [< Previous Module](../modules/module06.md) - **[Home](../README.md)** - [Next Module >](../modules/module08.md)
 
@@ -48,22 +48,28 @@ In this module, you’ll learn how to create, publish, and manage glossary terms
 1. Open the **Microsoft Purview** portal.
 2. Go to **Catalog management** > **Governance domains**.
 3. Select the domain you'd like to add the term to (e.g., `AdventureWorksLT`).
-4. Under the **Details** tab, find the **Glossary terms** card and select **View all**.
+4. Under the **Business concepts** section, find the **Glossary terms** card and select **View all**.
+- ![Purview Managing Data Sources](../images/module07/7.1.png)
 5. Click **+ New term**.
+- ![Purview Managing Data Sources](../images/module07/7.2.png)
 6. Fill in the form:
    - **Name**: `Customer`
-   - **Definition**:  
-     > An individual or organization that engages with a business by purchasing goods or services. Customers are typically identified by a unique identifier (such as CustomerID) and are associated with contact details, billing addresses, and order history.  
-     >  
-     > In analytics and reporting, customers are often segmented by behavior, geography, or lifetime value to support marketing and sales strategies.
-   - **Owner(s)**: Select yourself or a steward
+   - **Definition**:  `An individual or organization that engages with a business by purchasing goods or services. Customers are typically identified by a unique identifier (such as CustomerID) and are associated with contact details, billing addresses, and order history.`  
+   - **Owner(s)**: Search for `admin` and add yourself
    - (Optional) Add a **Parent Term** for hierarchy
-   - (Optional) Add **Acronyms** or related resources
+   - ![Purview Managing Data Sources](../images/module07/7.3.png)
+   - Click Nex
+   - Add **Acronyms**
+   - **Acronym:** `CX`
+   - ![Purview Managing Data Sources](../images/module07/7.4.png)
+   - Add **Resources** (useful links)
+   - **Resources**: `aka.ms/AdvWorksWiki`
+    - ![Purview Managing Data Sources](../images/module07/7.5.png)
 7. Click **Create**.
 
 > 🔒 Your term is now in **Draft** state — only visible to stewards and domain owners.
 
-📸 *TODO Insert screenshot of filled-out “New term” form*
+- ![Purview Managing Data Sources](../images/module07/7.6.png)
 
 ---
 
@@ -74,9 +80,9 @@ Once your term is ready for broader visibility:
 1. Open the glossary term (e.g., **Customer**).
 2. In the top left corner, click the **Publish** button next to **Edit**.
 
-> ✅ The term's status will change from **Draft** to **Published**, making it visible in the Unified Catalog.
+> ✅ The term's status will change from **Draft** to **Published**, making it visible in the Enterprise Glossary (where consumers can search for business concepts like glossary terms and related assets).
 
-📸 *TODO Insert screenshot showing the Publish button*
+- ![Purview Managing Data Sources](../images/module07/7.7.png)
 
 ---
 
@@ -87,13 +93,12 @@ You can associate glossary terms with related data products:
 1. Open the published glossary term.
 2. Go to the **Related** tab.
 3. Click **+ Add data product**.
-4. Search for and select relevant data products, such as:
-   - `SalesLT.Customer`
-   - `SalesLT.CustomerAddress`
-   - `SalesLT.SalesOrderHeader`
+- ![Purview Managing Data Sources](../images/module07/7.8.png)
+4. Search for and select published data products, such as:
+   - `Customer Order Summary`
+- ![Purview Managing Data Sources](../images/module07/7.9.png)
 5. Click **Add** to confirm.
-
-📸 *TODO Insert screenshot of term with related data products linked*
+- ![Purview Managing Data Sources](../images/module07/7.10.png)
 
 ---
 
@@ -105,11 +110,11 @@ You can associate glossary terms with related data products:
 2. Under **Discovery**, select **Enterprise glossary**.
 3. Use tabs like **Glossary terms**, **Critical data elements**, or **OKRs** to explore published concepts.
 4. Search by term name or filter by domain, owner, acronym, etc.
-5. Switch between **List**, **Compact**, or **Tree** views to visualise parent/child relationships.
+5. Switch between **Compact list**, or **Tree** views to visualise parent/child relationships.
 
 > 🔍 Unpublished parent terms won't appear in the tree view.
 
-📸 *TODO Insert screenshot of glossary search interface in Unified Catalog > Discovery*
+- ![Purview Managing Data Sources](../images/module07/7.11.png)
 
 ---
 
