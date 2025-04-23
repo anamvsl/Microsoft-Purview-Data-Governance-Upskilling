@@ -207,6 +207,10 @@ CREATE MASTER KEY;
 GO
 ```
 
+- ![Purview Managing Data Sources](../images/module03/3L.png)
+
+
+
 ---
 
 ### Step 1: Create a New Scan
