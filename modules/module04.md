@@ -42,11 +42,11 @@ Given that data is generated across various areas of a business, it is crucial t
 
 1. Open the **Microsoft Purview Governance Portal**, navigate to **Unified Catalog** > **Discovery** > **Data assets**, type the asterisk character (**\***) into the search bar, and hit **Enter**.
 
-    ![Discovery](../images/module4/M4.01.png)
+    ![Discovery](../images/module04/M4.01.png)
 
 2. Filter the search results by **Data Source type** (e.g. **Azure SQL DB**), and click the hyperlinked asset name to view the details (e.g. `Customer`).
 
-    ![Select Asset](../images/module4/M4.002.png)
+    ![Select Asset](../images/module04/M4.002.png)
 
 > :bulb: **Did you know?**
 >
@@ -58,7 +58,7 @@ Given that data is generated across various areas of a business, it is crucial t
 
 1. Click **Edit** to modify the asset details.
 
-    ![Edit Asset](../images/module4/M4.003.png)
+    ![Edit Asset](../images/module04/M4.003.png)
    
 3. Update the **Description** by copying and pasting the sample text below.
 
@@ -66,11 +66,11 @@ Given that data is generated across various areas of a business, it is crucial t
     The "Customer" table contains detailed information about customers. This table provides essential details about customers, including their contact information and the associated salesperson, which can be useful for customer relationship management and sales analysis.
     ```
 
-    ![Update Description](../images/module4/M4.004.png)
+    ![Update Description](../images/module04/M4.004.png)
 
 4. Assign a **Classification** (e.g. `All Full Names`) using the drop-down menu.
 
-    ![Update Classification](../images/module4/M4.05.png)
+    ![Update Classification](../images/module04/M4.05.png)
    
     > :bulb: **Did you know?**
     >
@@ -82,7 +82,7 @@ Given that data is generated across various areas of a business, it is crucial t
     >
     > **Classifications** and **Glossary Terms** can be assigned at the asset level (e.g. a Table within a Database) as well as at the schema level (e.g. a Column within a Table Schema).
 
-    ![Update Schema](../images/module4/M4.06.png)
+    ![Update Schema](../images/module04/M4.06.png)
 
     **Customer ID**
 
@@ -185,15 +185,15 @@ Given that data is generated across various areas of a business, it is crucial t
     >
     > For assets in which you are tagged as a **Contact**, these will appear on the home screen (Data catalog), under **My items**.
 
-    ![Update Contacts](../images/module4/M4.07.png)
+    ![Update Contacts](../images/module04/M4.07.png)
 
 8. To see other assets within the same path, navigate to the **Related** tab.
 
-    ![Related Assets](../images/module4/M4.08.png)
+    ![Related Assets](../images/module04/M4.08.png)
 
 9. Let's add a few tags to the data asset. Click on **Add Tag**, and type in the following: **Customer**, **Customer_Contact**, **Customer_Information**
 
-    ![Tags](../images/module4/M4.09.png)
+    ![Tags](../images/module04/M4.09.png)
 
 <div align="right"><a href="">↥ back to top</a></div>
 
@@ -204,23 +204,23 @@ Microsoft Purview allows us to perform certain operations (add/replace/remove) a
 
 1. Open the **Microsoft Purview Governance Portal**, navigate to **Unified Catalog** > **Discovery** > **Data assets**, type the asterisk character (**\***) into the search bar, and hit **Enter**.
 
-    ![Discovery](../images/module4/M4.01.png)
+    ![Discovery](../images/module04/M4.01.png)
 
 2. Filter the search results by **Data Source type** (e.g. **Azure SQL DB**), select the first five items in the search results, and click **View selected**.
 
-    ![View Selected](../images/module4/M4.1.png)
+    ![View Selected](../images/module04/M4.1.png)
 
 3. Click **Bulk edit**.
 
-    ![Bulk Edit](../images/module4/M4.2.png)
+    ![Bulk Edit](../images/module04/M4.2.png)
 
 4. Set the **Attribute** to `Owner`, set **Operation** to `Add`, select one or more users in your organization, and click **Apply**.
 
-    ![Apply Changes](../images/module4/M4.3.png)
+    ![Apply Changes](../images/module04/M4.3.png)
 
 5. Click **Deselect all and close**.
 
-    ![Deselect](../images/module4/M4.4.png)
+    ![Deselect](../images/module04/M4.4.png)
 
 <div align="right"><a href="# Module 4 - Curating Data Assets">↥ back to top</a></div>
 
