@@ -28,14 +28,19 @@ By the end of this module, you will be able to:
 
 ---
 
-## :bookmark_tabs: Table of Contents
+## Table of Contents
 
 | #  | Section |
 |----|---------|
-| 1  | [Registering Data Sources](#-registering-data-sources) |
-| 2  | [Key Concepts Before Scanning](#-key-concepts-before-scanning) |
-| 3  | [Configuring Scans](#-configuring-scans) |
-| 4  | [Monitoring Scans](#-monitoring-scans) |
+| 1  | [Registering Data Sources](#registering-data-sources) |
+| 2  | [Key Concepts Before Scanning](#key-concepts-before-scanning) |
+| 2.1 | [Scan Rule Sets](#scan-rule-sets) |
+| 2.2 | [Classifications](#classifications) |
+| 2.3 | [Integration Runtimes](#integration-runtimes) |
+| 2.4 | [Data Lineage](#data-lineage) |
+| 3  | [Configuring Scans](#configuring-scans) |
+| 4  | [Monitoring Scans](#monitoring-scans) |
+
 
 ---
 
@@ -160,7 +165,46 @@ Integration Runtimes (IR) define how Microsoft Purview connects to your data sou
 
 ---
 
+### 🧯 Data Lineage
+
+ 
+Data Lineage (or technical lineage) refers to the ability to trace the journey of data from its origin through various transformations to its final destination. In theory, it helps teams understand dependencies, ensure data quality, debug issues, and support governance efforts like compliance and impact analysis.
+
+In Microsoft Purview, lineage is captured in two main ways:
+
+📦 Intra-source Lineage (via Data Map scans)
+
+This is lineage captured within a single system, such as views referencing tables in an Azure SQL database. It’s generated automatically by scanning supported data sources.
+
+🌐 Inter-source Lineage (via Azure Data Factory or Synapse Pipelines)
+
+This covers lineage across systems — for example, moving data from an Azure SQL DB into a Data Lake using ADF.
+
+Supports lineage from Copy activity, Mapping Data Flows, and SSIS packages — as long as both source and sink are registered and scanned.
+
+🧬 Lineage Detail Levels
+
+Asset-level Lineage (Coarse-grained):Shows which datasets or tables are inputs and outputs to a process (e.g., "Table A feeds into Table B via a copy activity in ADF"). It’s helpful for high-level understanding and impact analysis.
+
+Column-level Lineage (Fine-grained):Available only for certain supported sources and transformations. It tries to show how individual columns are mapped or derived — but only where that metadata is available (e.g., from ADF Data Flows). In practice, this level of detail is often incomplete and requires very specific conditions to work.
+
+➕ Adding Lineage Connections (Optional)
+
+To enable lineage from orchestration tools like Azure Data Factory:
+
+Navigate to Source Management in your Data Map.
+
+Open the Lineage connections tab.
+
+Add your Azure Data Factory resource and confirm.
+
+- ![Purview Managing Data Sources](../images/module03/3ADF.png)
+
+If configured correctly, when you run scans on your sources which are part of your ADF pipelines, the lineage will be automatically pushed out by ADF into Purview.
+
 ## 🔢 Configuring Scans
+
+Now they we have got some background reading out of the way - let's get scanning!
 
 > Source: [Register and Scan Overview](https://learn.microsoft.com/en-us/purview/register-scan-overview)
 
@@ -328,7 +372,7 @@ Use this view to confirm that your metadata catalog stays accurate and up to dat
 In this module, you:
 
 - Registered a data source.
-- Explored key scanning concepts: rule sets, classifications, runtimes.
+- Explored key scanning concepts: rule sets, classifications, lineage and runtimes.
 - Configured and ran a scan.
 - Viewed scan progress in the Monitoring tab.
 
