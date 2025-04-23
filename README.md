@@ -1,7 +1,7 @@
-# Microsoft Purview (Data Governance) Upskilling Bootcamp
+# Microsoft Purview Data Governance Upskilling Bootcamp
 
 
-This is a modular training series for exploring Microsoft Purview’s Unified Data Governance platform. Across these labs, you’ll configure automated metadata scanning with built-in classification, organize assets with domains and collections, define business glossaries, publish data products, and track estate health using built-in data quality rules and controls.
+This is a modular lab based training series for exploring Microsoft Purview’s Unified Data Governance platform. Across these labs, you’ll configure automated metadata scanning with built-in classification, organize assets with domains and collections, define business glossaries, publish data products, and track estate health using built-in data quality rules and controls.
 
 ---
 
