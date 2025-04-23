@@ -44,7 +44,7 @@ By the end of this module, you will be able to:
 
 ---
 
-## 📄 Registering Data Sources
+## Registering Data Sources
 
 > Source: [Managing Data Sources](https://learn.microsoft.com/en-us/purview/manage-data-sources)
 
@@ -212,7 +212,7 @@ Once your data source is registered, the next step is to **configure and run a s
 
 ---
 
-### 🔐 Authentication Options
+### 🔐 Consider Authentication Options
 
 | Method | Description |
 |--------|-------------|
@@ -226,11 +226,24 @@ For this lab, we will go ahead and work with the Managed Identity for our authen
 
 ---
 
-### 🛠️ Grant SQL Access
+### 🛠️ Pre-requisites
+
+To get started, we must configure some settings on our Azure SQL data source settings.
+
+- Go to the Azure SQL server settings. Under Microsoft Entra ID, click on set admin and assign your user.
+
+- ![Purview Managing Data Sources](../images/module03/3EID.png)
+
+- Go to the Azure SQL server settings. Under Networking, enable 'Allow services and resources to access this server' and click on '+ Add your client IPv4 address'
+
+- ![Purview Managing Data Sources](../images/module03/3AAS.png)
+
+#### Give Purview data reader role on Az SQL database:
 
 Run the following in **Query Editor (preview)** in Azure SQL, using Entra ID login:
 
-#### Minimum access for scanning:
+Provided you have done the above 
+
 ```sql
 CREATE USER [<your-purview-account-name>] FROM EXTERNAL PROVIDER;
 GO
@@ -238,6 +251,8 @@ GO
 EXEC sp_addrolemember 'db_datareader', [<your-purview-account-name>];
 GO
 ```
+
+If you choose to run a scan now, it will pass the test connection step as Purview has now explicitly been given the data reader role it needs to extract metadata.
 
 #### Optional: For lineage extraction:
 ```sql
@@ -253,11 +268,11 @@ GO
 
 - ![Purview Managing Data Sources](../images/module03/3L.png)
 
-
-
 ---
 
 ### Step 1: Create a New Scan
+
+With our route of authenticating decided and our pre-requisite steps complete, we can begin to start a scan in the Purview UI.
 
 1. In **Data Map > Data Sources**, select your registered source.
 2. Click **New scan**.
