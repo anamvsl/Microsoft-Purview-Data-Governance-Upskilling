@@ -12,13 +12,12 @@
 * Owner permissions within a Resource Group on Azure to create resources and manage role assignments.
 * The Azure subscription must have the following resource providers registered.
   * Microsoft.Authorization
-  * Microsoft.Fabric
-  * Microsoft.Capacity
-  * Microsoft.DataFactory
-  * Microsoft.KeyVault
+
   * Microsoft.Purview
   * Microsoft.Storage
   * Microsoft.Sql
+  * (Optional) Microsoft.DataFactory
+  * (Optional) Microsoft.KeyVault
 
 ## :dart: Objectives
 
@@ -36,7 +35,8 @@
 
 Use this script to deploy your Azure resources, including a lightweight Microsoft Fabric capacity (F2 SKU). This Fabric capacity will be used for creating Lakehouses and registered as a data source within Microsoft Purview.
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fanamvsl%2FMicrosoft-Purview-Data-Governance-Upskilling%2Fmain%2Finfra%2Fdeployment.bicep)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fanamvsl%2FMicrosoft-Purview-Data-Governance-Upskilling%2Fmain%2Finfra%2Fdeployment.json)
+
 
 ## :tada: Summary
 
