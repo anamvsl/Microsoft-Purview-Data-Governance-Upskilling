@@ -2,6 +2,8 @@
 
 [< Previous Module](../modules/module04.md) - **[Home](../README.md)** - [Next Module >](../modules/module07.md)
 
+⏰ Duration: 20 minutes
+
 ## 📌 Introduction
 
 This lab walks you through how to create a **data product** in Microsoft Purview's Unified Data Governance experience. Data products represent a business-friendly packaging of data assets, with descriptions, use cases, and access control to promote reusability, discoverability, and responsible access.
