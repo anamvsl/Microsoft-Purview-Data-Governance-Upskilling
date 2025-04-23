@@ -1,259 +1,332 @@
-![Banner](./assets/banner.png)
+[< Previous Module](../modules/module02.md) - **[Home](../README.md)** - [Next Module >](../modules/module04.md)
 
-# Lab 3: Managing Data Sources
+![Banner](../assets/banner.png)
 
-## Task 1: Registering Data Sources
+# Module 3: Managing Data Sources
 
-> Microsoft Purview Solution: Data Map
+**⏰ Duration:** 45 minutes  
+**🎩 Purview Solution:** Data Map  
+**🌟 Outcome:** You will register one or more data sources, configure and run scans, and understand how scan rule sets, classifications, and integration runtimes enhance your metadata catalog.
 
-**⏰ Duration:** 30 minutes
+---
 
-**🎯 Outcome:** At the end of this task you will have registered a series of data sources in the Data Map. These can then be scanned, bringing in source - technical metadata, which in turn can be available to end-users via the Unified Catalog.
+## 📝 Introduction
 
-### Why register Data Sources?
+In this module, you will extend your Microsoft Purview Data Map by registering data sources and configuring scans. You’ll also explore scan rule sets, classifications, and integration runtimes to ensure your catalog reflects an accurate, well-governed view of your data estate.
+
+---
+
+## ✅ Learning Objectives
+
+By the end of this module, you will be able to:
+
+- Register new data sources in Microsoft Purview.
+- Configure data source scans and understand scan parameters.
+- Explain the role of scan rule sets and classifications.
+- Understand the different types of integration runtimes available.
+- Monitor the status of scans using the Data Map solution.
+
+---
+
+## :bookmark_tabs: Table of Contents
+
+| #  | Section |
+|----|---------|
+| 1  | [Registering Data Sources](#-registering-data-sources) |
+| 2  | [Key Concepts Before Scanning](#-key-concepts-before-scanning) |
+| 3  | [Configuring Scans](#-configuring-scans) |
+| 4  | [Monitoring Scans](#-monitoring-scans) |
+
+---
+
+## 📄 Registering Data Sources
 
 > Source: [Managing Data Sources](https://learn.microsoft.com/en-us/purview/manage-data-sources)
 
-Purview Data Governance lets you register, manage, and move data sources in your organization's data map. This aids in the organized categorization and systematic access control of your data.
+Before you can scan a data source, you must register it. Registration places the data source into a collection, defines its access boundary, and makes it visible in the Data Map.
 
-[Registering](https://learn.microsoft.com/purview/how-to-create-and-manage-collections#register-source-to-a-collection) is a requirement for Purview to scan that source and read out the technical metadata and lineage ([connector](https://learn.microsoft.com/purview/microsoft-purview-connector-overview#microsoft-purview-data-map-available-data-sources) dependent).
-
-To register a data source, you will require the role of a [Data Source Admin](https://learn.microsoft.com/purview/governance-roles-permissions#domain-and-collection-permissions:~:text=and%20glossary%20terms.-,Data%20source%20administrator,-%2D%20a%20role%20that) and individual access to that data source. The Registration process involves selecting 'Data sources' in the Microsoft Purview Data Map, choosing a source type, and filling out the form on the 'Register sources' page.
-
-**_NB_** - that most data sources have additional specific information and prerequisites for registration and scanning. This may include but is not limited to the configuration of networking-related settings (private endpoints/firewall rules), enabling the Purview identity to have 'read' access of the source, etc. These topics are out-of-scope for this masterclass series.
-
-As such, data sources are typically registered once by a central IT team or using infrastructure as code (IaC) tools like Terraform or ARM templates, under elevated change privileges. This ensures that the data source is registered consistently across the organization and that the necessary prerequisites are met.
-
-### Exercise: Adding Data Sources
-
-**🫂 Team Activity:** [15 minutes] Review the [supported data sources](https://learn.microsoft.com/purview/microsoft-purview-connector-overview) and discuss which data sources you would like to onboard first. Start with something that minimizes administrative overhead or extensive configuration (think: Azure SQL Database or Azure Data Lake Storage).
-
-- What are the common data sources throughout your organization?
-- Where are these data sources? Azure? another cloud provider? or on premises?
-- What are the key data assets that you should target which provide the most benefit to the business?
-- Do you have any data sources that are not on the supported list? </br>
-  **_NB_** - We caution against custom/bespoke integrations, due to the Product Manager responsibilities this creates across the full product lifecycle for customers.
-
-**✨ Pro Tip:** Purview regularly updates its published [roadmap](https://learn.microsoft.com/purview/whats-new#whats-planned-for-microsoft-purview), which includes the planned data source connector work.
-
-**✍️ Do in Purview:** [15 minutes] Using the Data Map solution, 'Register' a data source by following the wizard. Be sure to select the domain and collection name into which this data source should be registered. You should be confident on your collection hierarchy before continuing.
-
-![Register data source button](./assets/register-datasource-button.png)
-
-Once registered, your data map needs to be populated with information. This done via the 'scanning' process. Next:
-
-- Navigate to the data source overview and observe the registration date, collection path, source hierarchy.
-- Should the data source be enabled for automated data access policy enforcement? (access policies will be set up in subsequent tasks)
-
-**✨ Pro Tip:** Because a data source can only be registered once, in cases where the data source is shared across Unified Catalog - [Governance domains](https://learn.microsoft.com/purview/what-is-data-catalog#governance-domains), it may make sense to lift the registration into a parent collection shared by both governance domains.
-
-- More [best practices](https://learn.microsoft.com/purview/concept-best-practices-domains-and-gov-domains) can be found in the Purview documentation.
-
-After registering your source, you can move it to another collection within the same domain, assuming you have the required access and privileges. However, it's important to note that when a source is moved to a new collection, its scans move with it, but its assets **_will not appear_** in the new collection until the next scan is performed.
+> 💡 You need the **Data Source Administrator** role on the target collection to register a source.
 
 ---
 
-## Task 2: Configure Data Source Scans
+### Steps to Register a Data Source
 
-> Microsoft Purview Solution: Data Map
+1. Open the **Microsoft Purview** portal and navigate to **Data Map > Data Sources**.  
+   ![Purview Managing Data Sources](../images/module03/3.1.png)
 
-**⏰ Duration:** 20 minutes
+2. Click **Register** to open the registration wizard.
 
-**🎯 Outcome:** At the end of this tasks, you will have scanned the data source(s) previously registered to populate the Data Map with 'Data Assets'.
+3. In the **Register source** panel:
 
-### Exercise: Scanning a Data Source
+   - **Search for:**
+     ```
+     Azure SQL Database
+     ```
+     and click 'Continue'.
 
-**🫂 Team Activity:** [10 minutes] Purview scans technical metadata, based upon a sample a set number of rows (not the entire database or file). Discuss the frequency at which it makes sense to scan each data source.
+4. In the **Register data source (Azure SQL Database)** panel:
 
-Since the new Purview pricing model was introduced in January 2025, there is no longer a compute cost associated with scanning data sources. This means that you can scan data sources as frequently as you like without incurring additional costs in Purview. However, scanning data sources will still consume networking resources outside Microsoft Purview.
+   - **Data source name:**  
+     Choose a friendly and clear name that reflects the purpose of the source.  
+     Example:  
+     ```
+     AzureSqlDatabase-Adv-Works-Sales
+     ```
 
-Good scanning design practices remain important, here are some questions to consider:
+   - **Azure subscription:**  
+     Choose the Azure subscription where your data source is hosted. You must have read-level access to it.
 
-- How often do data source schemas evolve?
-- What data lake layers make sense to be included in a scan? i.e. Do we need to scan raw zones in a data lake when we expect this data to be transformed by business processes prior to becoming "useful" throughout our organization?
-- Is it economical to scan a source every day or does it make sense to do so on a weekly/monthly basis given metadata typically doesn't evolve at the same rate as the data itself?
-- Do you require scans to occur over a specific runtime? Azure auto-resolved integration runtime vs. self-hosted integration runtime?
-- Which credential is required to scan the data source? our recommendation is to use the Purview system-assigned managed identity ([SAMI](https://learn.microsoft.com/purview/register-scan-azure-sql-managed-instance#:~:text=The%20Microsoft%20Purview%20system%2Dassigned%20managed%20identity%20is%20created%20automatically%20when%20the%20account%20is%20created%20and%20has%20the%20same%20name%20as%20your%20Microsoft%20Purview%20account.)).
-- What scan level is appropriate for this scan activity?
-- Which collection should the assets be scanned into? This may be different from the collection in which the physical data source itself is registered.
-- Should scans be full scans or incremental scans?
+   - **Server name:**  
+     From the dropdown, select the SQL Server that hosts your database. If it doesn’t appear right away, click the refresh icon 🔄 next to the dropdown.
 
-**✨ Pro Tip:** Don't scan folders of data sources where data is created faster than a data scan can execute (think: files in a raw zone that are created every second). As there is a potential for the data discovery process to endlessly cycle before a scan is executed, leading to potential latency.
+     > 📝 If you’re unsure, confirm the server name in the Azure Portal under your SQL Server resource.
 
-**✍️ Do in Purview:** [10 minutes] Transfer your discussion into practice by configuring a data source scan for a selected data source.
+   - **Endpoint:**  
+     This auto-fills after selecting the server. It usually follows the pattern:  
+     ```
+     <server-name>.database.windows.net
+     ```
 
-1. Start by selecting a data source to scan, the select the 'New Scan' button.
-   ![Configure a new Data Source Scan](./assets/data-map-configure-scan-button.png)
+   - **Domain:**  
+     Choose the **platform domain** where this source should live. This reflects a business area, environment (e.g. dev/test/prod), or geographical boundary.
 
-2. Set up the name, credential, and scan level. Then determine into which collection the data source scan's artifacts (assets) will be written. Follow the steps to provide the Purview SAMI the required access to the data source. Test the connection, then proceed.
-   ![Configure Scan Details](./assets/configure-scan-details.png)
+   - **Collection:**  
+     Select the **collection** within the chosen domain that aligns with the data source’s ownership or purpose.  
+     Example:  
+     ```
+     Sales
+     ```
 
-3. The next steps depend on the type of data source but typically require you to select the scope of your scan (i.e. which locations in the Storage Account need to be scanned), the types of file extensions to be scanned, the scan rule set to use (we will look at this next), and the frequency of the scan.
+     > 📁 All metadata from this data source will be stored in this collection.
 
-Select 'Run Once', save and run the scan. After a scan is configured, open the Data Source and note the recent scans, each scan has options to trigger the scan manually, edit, or delete it.
+   - ![Purview Managing Data Sources](../images/module03/3.2S.png)
 
-![Data Source Overview](./assets/data-source-overview.png)
+5. Click **Register** to finish.
 
-**⏸️ Wait:** A data source scan will have to complete before you can move on to the next section. You can use the 'Monitoring' tab of the Data Map or the Scan Details to track scan the scan status.
+6. Review the newly registered source in the Data Map.  
+   ![Purview Managing Data Sources](../images/module03/3.3.png)
 
-## Task 3: Defining Scan Rule Sets
+> 🔹 Note: A data source can only be registered once. For shared assets, use a shared parent collection.
 
-> Microsoft Purview Solution: Data Map
+---
 
-**⏰ Duration:** 20 minutes
+## 🧠 Key Concepts Before Scanning
 
-**🎯 Outcome:** At the end of this task, you will have a better understanding of scan rules sets, how to implement them, and when to use them to optimize data source scanning.
+Before running your first scan, it’s important to understand a few core concepts that influence how your metadata is captured and interpreted.
 
-### Understanding Scan Rule sets
+---
+
+### 🔍 Scan Rule Sets
 
 > Source: [Creating Scan Rule Sets](https://learn.microsoft.com/en-us/purview/create-a-scan-rule-set)
 
-Microsoft Purview comes with a default Scan Rule set for each data source type. These rule sets are designed to scan the most common file types and metadata. Each scan ingests the metadata and applies a series of classifications to the dataset. Out of the box, there are over 200+ classifications that can be applied, ranging from Government issued IDs (Australian Passport Number, US Social Security Number...), Financial, Personal, Security... to custom classifications that you can define based on the shape of your data.
+Scan rule sets define how the scanner behaves — what metadata to extract, what file types to include, and which built-in or custom classifications to apply.
 
-![Scan Rule Set](/assets/scan-rule-set-overview.png)
+> ✨ **Pro Tip:** You can create custom scan rule sets to exclude irrelevant file types or focus on business-specific data.
 
-The default rule set for each data source is a good starting point, but you may want to create custom rule sets to better suit your organization's needs as you learn about your data. For example, you may want to exclude certain file types from a scan or you may want to apply a specific classification to a certain type of data.
-
-As scans consume compute resources, it's important to ensure that your rule sets are optimized to scan only the data that is necessary and only apply the classifications you expect. This will help to improve the performance of your scans. In a practical sense, there is no point analyzing the data source to detect `Argentina National Identity (DNI) Number` if you know for a fact that your data source does not contain information of this type.
-
-**✨ Pro Tip:** You can only use the scan rule set in the domain where you created it.
-
-### Exercise: Creating a Scan Rule set
-
-**🫂 Team Activity:** [10 minutes] Discuss the need for custom scan rule sets in your organization. Consider the following:
-
-- Are there any file types that should be excluded from the scan?
-- Are there any classifications that should be applied to specific types of data?
-- Are there any classifications that should be excluded from the scan?
-
-**✍️ Do in Purview:** [10 minutes] Create a custom scan rule set for a data source that you have previously scanned. Start by selecting the 'Scan rule sets' tab in the Data Map solution and selecting the 'New' button.
-
-## Task 4: Classifications
-
-> Microsoft Purview Solution: Data Map
-
-**⏰ Duration:** 10 minutes
-
-**🎯 Outcome:** At the end of this task, you will have a better understanding of system and custom classifications in Purview Data Governance, including how to configure them.
-
-### Understanding Classifications
-
-> Source: [Classifications](https://learn.microsoft.com/en-us/purview/concept-classification)
-
-Classifications are applied at the time of scanning and are used to categorize and label data assets. Purview Data Governance comes with several international system classifications that are scanned for by default, but you can also create custom classifications to more accurately detect and tag data throughout your organization.
-
-**Example:** How asset-level classifications appear for an Azure SQL Table:
-![Asset-level Classifications](/assets/asset-level-classifications.png)
-
-**Example:** How schema-level classifications appear for an Azure SQL Table:
-![Schema-level Classifications](/assets/schema-level-classifications.png)
-
-#### Custom Classifications
-
-If a bespoke classification does not exist out of the box, you may decide to create a "custom" classification. These may either be regular expression patterns or dictionary lookups. You also define the percentage of sampled rows that must match the regular expression or dictionary lookup to apply the classification. The lower percentage, the higher the hit-rate and increased risk of false positives.
-
-An example of a custom classification would be a specifically formatted Invoice ID (e.g. INV-123-XYZ) which comes from a specific source system, or an X (formerly Twitter) handle (e.g. @username).
-
-### Exercise: Creating a Custom Classification
-
-**✍️ Do in Purview:** [10 minutes] Based on your answer to the questions in the previous team activity, go ahead and create the custom classification.
-
-1. In the Data Map solution, navigate to 'Annotation Management' and select 'Classifications'. Click '+ New' and provide a name and description.
-
-   ![New Classification](./assets/new-classification.png)
-
-2. Now we want to associate a classification rule with this classification. Click '+ New' under 'Classification Rules'
-
-   - Provide a name and description for the rule.
-   - Next, we need to associate the rule with a our previously created classification.
-   - Leave the state as 'Enabled'.
-   - Select the type, we will leave it at Regular Expression.
-
-   ![Create Classification Rule](/assets/new-classification-rule.png)
-
-   Select 'Continue'.
-
-3. Now we can go ahead and configure our regular expression. Either do so by following the prompt to upload sample data or supplying your own regex pattern.
-
-   - Specify the Data Pattern.
-   - Set the Minimum Match Threshold (the minimum percentage of data value matches in a column that needs to be found by the scanner for the classification to be applied.)
-
-     **✨ Pro Tip:** The suggested value is 60%. Note: If you specify multiple data patterns, this setting will be disabled, and the value will be fixed at 60%.</br>
-
-   - You may decide to specify a pattern for the column name as well, this ensures that your rule will only apply to columns with a specific pattern, rather than any column in a dataset.
-
-   ![Test Classification Rule](assets/test-classification-rule.png)
-
-   Click 'Create' to confirm your classification rule.
-
-You may decide to revise the Scan Rule Sets from task 3 to include your new custom classification.
-
-**✨ Pro Tip:** If you delete a classification rule in the future, you have options to determine what should happen in areas throughout your catalog where this classification is currently applied.
-
-![Delete Classification Rule](assets/delete-classification-rule.png)
-
-## Task 5: Understanding Integration Runtimes
-
-> Microsoft Purview Solution: Data Map
-
-**⏰ Duration:** 10 minutes
-
-**🎯 Outcome:** At the end of this task, you will have a better understanding of the different types of integration runtimes available in Purview Data Governance.
-
-### Understanding Integration Runtimes
-
-> Source: [Choose the right integration runtime](https://learn.microsoft.com/en-us/purview/choose-the-right-integration-runtime-configuration)
-
-Purview uses integration runtimes (IR) to connect to data sources and provide the compute to run the scans. Not all data sources support all integration runtime types and vice a versa.
-
-These runtimes can be auto-resolved by Azure or self-hosted (SHIR) by your organization. The choice of integration runtime depends on the data source you are connecting to and the network configuration of your organization.
-
-You can choose between:
-
-- **Azure Integration Runtime:** This runtime is managed by Azure and is used to connect to Azure data sources. It is auto-resolved by Azure and does not require any additional configuration.
-
-- **Managed Virtual Network (VNet) Integration Runtime:** This runtime is used to connect to data sources in a virtual network. It is auto-resolved by Azure and does not require any additional configuration.
-
-- **Self-hosted Integration Runtime:** This runtime is hosted on your organization's network and is used to connect to on-premises data sources. It requires additional configuration to connect to your data source.
-
-- **Kubernetes supported Self-Hosted Integration Runtime (Preview):** This runtime is used to connect to on-premises data sources. It requires additional configuration to connect to your data source.
-
-- **AWS Integration Runtime:** This runtime is used to connect to AWS data sources.
-
-**✨ Pro Tip:** When choosing an integration runtime, consider the network configuration of your organization and the data source you are connecting to. If you are connecting to an on-premises data source, you must use a self-hosted integration runtime.
-
-**🫂 Team Activity:** [10 minutes] Review the integration runtimes available in Purview and discuss which runtimes are best suited to your organization's needs.
-
-## Task 6: Monitoring
-
-> Microsoft Purview Solution: Data Map
-
-Each scan you configure in Microsoft Purview Data Governance has an associated Run ID, which uniquely identifies it. You can view an all-up scan status via the Data Map's Monitoring tab and drill deeper into each category to discover more details.
-
-![Data Map Monitoring](./assets/data-map-monitoring.png)
-
-More Details:
-
-![Scan Status](/assets/data-map-scan-status.png)
-
-Additional information (including logs) is available.
-
-### Exercise: Monitor your data source scans
-
-**✍️ Do in Purview:** [5 minutes] Spend a few minutes familiarizing yourself with the types of scan statuses and logs available in the Monitoring tab of the Data Map solution.
-
-- Did your data source scan from Task 2 complete successfully? If not, can you find out why?
+- Default rule sets cover common metadata patterns.
+- Custom rule sets improve performance and reduce noise.
+- Rule sets are domain-scoped and must be recreated per domain if needed.
 
 ---
 
-**⏸️ Reflection:** You have now registered data sources, configured scans, and defined scan rule sets in Microsoft Purview. You learned about the concept of classifications and how to create your own classifications for more specific metadata classification. Furthermore, you learned about integration runtimes and how they can be used to connect to data sources.
+### 🏷️ Classifications
 
-What does this all mean? You are now ready to build on top of this foundation and start to map data into governance domains.
+> Source: [Concept - Classification](https://learn.microsoft.com/en-us/purview/concept-classification)
 
-Each time a data source is onboarded, you will (roughly) follow these steps:
+Classifications help detect sensitive or regulated data during scans. Purview includes 200+ system classifiers like:
 
-![Data Source Onboarding Process](./assets/data-source-onboarding-process.png)
+- Government IDs (e.g., UK NI, US SSN)
+- Financial data (e.g., credit cards)
+- Personal information (e.g., phone numbers, emails)
 
-Before you leave, review this section again to understand what is required as your organization connects new data sources or scales Purview across the data estate.
+> ✨ **Pro Tip:** Use **custom classifications** (e.g., regex or dictionary-based) to find business-specific formats like invoice numbers or product SKUs.
 
-👉 [Continue: Lab 4](./Lab-04%20-%20Governance%20Domains%20and%20Terms.md)
+---
+
+### 🔌 Integration Runtimes
+
+> Source: [Choose the Right Integration Runtime](https://learn.microsoft.com/en-us/purview/choose-the-right-integration-runtime-configuration)
+
+Integration Runtimes (IR) define how Microsoft Purview connects to your data sources.
+
+| Type | Description |
+|------|-------------|
+| Azure IR | Default. Auto-managed for Azure sources. |
+| Managed VNet IR | Auto-managed with secure VNet access. |
+| Self-hosted IR | For on-premises or private sources. |
+| Kubernetes IR (Preview) | Advanced AKS scenarios. |
+| AWS IR | For AWS-native sources. |
+
+---
+
+## 🔢 Configuring Scans
+
+> Source: [Register and Scan Overview](https://learn.microsoft.com/en-us/purview/register-scan-overview)
+
+Once your data source is registered, the next step is to **configure and run a scan**. This process extracts technical metadata like table names, columns, and data types into the Data Map.
+
+---
+
+### 🔐 Authentication Options
+
+| Method | Description |
+|--------|-------------|
+| **Managed Identity** | Uses Purview’s identity via Entra ID. | 
+| **Service Principal** | Uses an Entra app + secret from Key Vault. |
+| **SQL Auth** | Uses traditional SQL login (from Key Vault). | 
+
+For this lab, we will go ahead and work with the Managed Identity for our authentication option.
+
+> ⚠️ Managed identity doesn’t work with **self-hosted IR** — use SQL auth or a service principal instead.
+
+---
+
+### 🛠️ Grant SQL Access
+
+Run the following in **Query Editor (preview)** in Azure SQL, using Entra ID login:
+
+#### Minimum access for scanning:
+```sql
+CREATE USER [<your-purview-account-name>] FROM EXTERNAL PROVIDER;
+GO
+
+EXEC sp_addrolemember 'db_datareader', [<your-purview-account-name>];
+GO
+```
+
+#### Optional: For lineage extraction:
+```sql
+CREATE USER [ms-purview-<your-purview-name>] FROM EXTERNAL PROVIDER;
+GO
+
+EXEC sp_addrolemember 'db_owner', [ms-purview-<your-purview-name>];
+GO
+
+CREATE MASTER KEY;
+GO
+```
+
+---
+
+### Step 1: Create a New Scan
+
+1. In **Data Map > Data Sources**, select your registered source.
+2. Click **New scan**.
+3. Fill in:
+   - **Scan Name:**  
+     ```
+     az-sql-db-adv-works-sales-scan-001
+     ```
+   - **Integration Runtime:**  
+     Choose **Azure Integration Runtime**.
+   - **Database:**  
+     Select your Azure SQL DB from the dropdown.
+     ```
+     az-sql-db-csu-bootcamp-ju
+     ```
+   - **Credential:**  
+     Choose `Microsoft Purview MSI (system)`.
+   - **Lineage extraction:** Toggle **On** (optional).
+   - **Scan Level:** Auto detect.
+   - **xEvent storage:** Use Microsoft-managed storage.
+   - **Domain & Collection:** Your domain and collection details are auto-populated based on where the data source was registered.
+
+   - ![Purview Managing Data Sources](../images/module03/3.5M.png)
+
+---
+
+### Step 2: Test Connection
+
+Click **Test connection** to confirm the Purview identity has the required permissions.   
+![Purview Managing Data Sources](../images/module03/3.6.png)
+
+> ❗ If this fails, re-check the SQL permissions granted to the Purview identity.
+
+---
+
+### Step 3: Define the Scan Scope
+
+After the connection is successfully tested, select the **scope** of your scan. This step determines which parts of the data source will be scanned — you can limit by schema or table.
+
+![Your Screenshot - Scan Scope](../images/module03/3.7.png)
+
+> 🧠 **Why this matters:**  
+> Scanning everything isn't always ideal — especially in large or sensitive environments. Narrowing the scope helps with performance, compliance, and clarity of results.
+- ✅ **Best practice:** Usually you would start with a few key tables you are familiar with to verify everything is working correctly.
+- 🔐 You might avoid scanning certain tables or views depending on your governance requirements.
+
+---
+
+### Step 4: Select Scan Rule Set
+
+Start with the System Default rule set called AzureSqlDatabase, which includes all 209 system classification rules. You can create custom rule sets later if needed.
+
+![Your Screenshot - Scan Rule Set](../images/module03/3.8.png)
+
+> 📌 **Why this matters:**  
+> Rule sets guide what the scan should "look for" — such as specific file types or classifications. Microsoft Purview includes defaults, but you can tailor these to fit your needs.
+
+- 🧰 **Default rulesets** are fine for most use cases.
+- ⚙️ **Custom rulesets** let you exclude certain formats, or include custom classifications or optimise scan performance
+
+---
+
+### Step 5: Set Scan Trigger
+
+Review when the scan should run.
+
+- Select **once** for this lab.
+
+![Your Screenshot - Scan Trigger](../images/module03/3.9.png)
+
+> ⏱️ **Why this matters:**  
+> Metadata can change over time. Regular scans help keep your catalog current without manual effort.
+
+- 🧪 Use **Run once** for testing or a first-time scan.
+- 🔄 Choose **Recurring** for ongoing visibility — e.g., every week or month.
+
+---
+
+### Step 6: Review and Run
+
+Review your selections and click **Save and run**.
+
+![Your Screenshot - Save and Run](../images/module03/3.10.png)
+
+> 🚀 Congratulations, you have kicked off your first scan! Once complete, the discovered metadata will appear in your catalog under the collection where the data source was registered.
+---
+
+## 📊 Monitoring Scans
+
+Each scan generates a unique run ID and status, viewable in the **Monitoring** tab.
+
+Monitoring helps you validate that your scans are running as expected and identify any issues early on. This becomes especially important for scheduled (recurring) scans, where failures may go unnoticed unless monitored — and in environments handling sensitive data or supporting critical operations, where metadata freshness is tied to governance, compliance, or business continuity
+
+### To monitor:
+
+1. Go to **Data Map > Monitoring**.
+2. Review key details:
+   - **Status**: See if the scan succeeded or failed.
+   - **Duration**: Check how long the scan took.
+   - **Failure logs**: Use this for troubleshooting if the scan didn’t succeed.
+
+![Your Screenshot - Save and Run](../images/module03/3.11.png)
+
+> ↺ You can re-run scans or schedule recurring ones directly from the Monitoring tab.
+
+Use this view to confirm that your metadata catalog stays accurate and up to date — a foundational step for governance, reporting, and data discovery.
+
+---
+
+## ✅ Summary
+
+In this module, you:
+
+- Registered a data source.
+- Explored key scanning concepts: rule sets, classifications, runtimes.
+- Configured and ran a scan.
+- Viewed scan progress in the Monitoring tab.
+
+👉 [Continue to Module 4: Governance Domains and Business Glossary](../modules/module04.md)
+
