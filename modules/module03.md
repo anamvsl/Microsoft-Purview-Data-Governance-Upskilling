@@ -240,9 +240,11 @@ To get started, we must configure some settings on our Azure SQL data source set
 
 #### Give Purview data reader role on Az SQL database:
 
-Run the following in **Query Editor (preview)** in Azure SQL, using Entra ID login:
+Let's give the Purview data map scanner the right permission it needs for the scan.
+Start by going to the  **Query Editor (preview)** in Azure SQL DB.
 
-Provided you have done the above 
+- Login using the Entra ID option
+- Run the following scripts:
 
 ```sql
 CREATE USER [<your-purview-account-name>] FROM EXTERNAL PROVIDER;
@@ -265,7 +267,7 @@ GO
 CREATE MASTER KEY;
 GO
 ```
-
+- Below is an example of the intra-source lineage type:
 - ![Purview Managing Data Sources](../images/module03/3L.png)
 
 ---
