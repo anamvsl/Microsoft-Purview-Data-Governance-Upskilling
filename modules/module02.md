@@ -56,42 +56,65 @@ _Source: [Manage Domains and Collections](https://learn.microsoft.com/en-us/purv
 
 Collections are used to organize data assets, data sources, and scans within a domain. They define access control boundaries and follow a tree structure.
 
+Collections act as containers for your assets - every data asset, source, or scan must reside within a collection. When you run a Purview scan, you are required to specify which collection the discovered assets will belong to. This helps keep your data organized and ensures access policies are consistently applied.
+
 Key characteristics:
 
-- **Hierarchical structure**: Up to 8 levels deep, with a maximum of 256 collections per domain.
-- **Role-based access control**: Assign roles such as Collection Admin, Data Curator, and Data Reader.
-- **Access inheritance**: Permissions are inherited from parent collections by default but can be restricted.
-- **Resource ownership**: Assets and scans are associated with the collection in which they are registered.
+Hierarchical structure: Up to 8 levels deep, with a maximum of 256 collections per domain.
+
+Role-based access control: Assign roles such as Collection Admin, Data Curator, and Data Reader.
+
+Access inheritance: Permissions are inherited from parent collections by default but can be restricted.
+
+Resource ownership: Assets and scans are associated with the collection in which they are registered.
 
 ---
 
-## ⚙️ Exploring Platform Domains
+# ⚙️ Exploring Platform Domains
 
-By default, a **platform domain** is automatically created when your Microsoft Purview account is upgraded. This default domain is sufficient for most environments.
+By default, a `platform domain` is automatically created for every Microsoft Purview Data Map environment. This default domain is sufficient for most environments.
 
-If your organization requires isolation across teams, subsidiaries, or deployment environments (e.g., dev/test/prod), you may create up to four additional domains.
+However, if your organization requires isolation across teams, subsidiaries, or deployment environments (e.g., dev/test/prod), you may create up to four additional domains.
 
 ---
 
-1. Open the **Microsoft Purview** portal and select **Data Map** from the left-hand menu or selecting it from the main overview panel on the homepage
-   _Insert screenshot: Purview portal showing "Data Map" navigation_
+## Steps to Create a New Domain
 
-2. Select the **Domains** tab to view the default domain. You should already be here as soon as you click on the Data Map button.   
-   _Insert screenshot: Domains tab with default domain listed_
+1. Open the Microsoft Purview portal and select `Data Map` from the left-hand navigation or from the central solution cards.  
+   ![Purview Data Map navigation](../images/module02/2.1.png)
 
-3. If needed, click **+ New domain** to create a custom domain.  
-   _Insert screenshot: "Create new domain" button_
+2. On the `Domains` tab, you'll see your existing platform domains. By default, one domain (e.g., `Adventure Works Cycles`) will already be created.  
+   ![Purview Data Map navigation2](../images/module02/2.2.png)
 
-4. Enter a **name** and **description** for the domain.  
-   _Insert screenshot: Domain name and description fields_
+3. To create a new domain, click `+ New domain (Preview)` at the bottom of the Domains pane.  
+   ![Purview Data Map navigation3](../images/module02/2.3.png)
 
-5. Assign one or more **Domain Admins** to manage this domain.  
-   _Insert screenshot: Role assignment section_
+4. In the `New domain` panel, fill in the name of your platform domain, description and domain admin. Good naming conventions and descriptions will help in the long run.
 
-6. Click **Save** to create the domain.  
-   _Insert screenshot: Domains list showing the newly created domain_
+   **Display name**
+   ```text
+   Adventure Works Cycles [Dev]
+   ```
 
-> You only need to create custom domains if your organization requires separate governance scopes. Most environments can begin with the default domain alone.
+   **Description**
+   ```text
+   The domain serves as a sandbox for data stewards and engineers to experiment with governance elements, from scanning to asset curation.
+   ```
+   
+    **Domain admins**
+   ```text
+   admin
+   ```
+   ![Purview Data Map navigation4](../images/module02/2.4.png)
+
+   Once you have filled out the details click `Create` to add the domain.
+
+   ![Purview Data Map navigation4](../images/module02/2.4.1.png)
+
+5. Take a moment to review your newly created platform domain. You can switch between domains by clicking on the text of the domain.  
+   ![Purview Data Map navigation5](../images/module02/2.5.png)
+
+> 💡 You only need to create additional domains if your organization requires distinct governance scopes. For many environments, the default domain is enough.
 
 ---
 
@@ -103,27 +126,41 @@ As mentioned earlier, collections allow you to group and manage data sources, sc
 
 In this exercise, you'll create a new collection inside the **default domain**.
 
-> For example, you might create collections named `HR`, `Finance`, or `CustomerInsights` to match internal ownership boundaries.
+> For example, you might create collections named `HR`, `Sales`, or `CustomerInsights` to match internal ownership boundaries.
 
 ---
 
 1. Go back to the **Domains** tab under the **Data Map**, if you are not already there.  
-   _Insert screenshot: Collections tab showing root collection of the domain_
 
 2. Click **+ New collection**.  
-   _Insert screenshot: New Collection panel opening from the right_
+   ![Purview Data Map navigation6](../images/module02/2.6.png)
 
-3. In the panel that appears, enter a **Display name** for the new collection.  
-   Optionally, add a **Description** and assign a **Collection Admin** (this is not required at creation).  
-   _Insert screenshot: New collection form (e.g. your provided screenshot)_
+3. In the `New domain` panel, fill in the name of your collection, description and collection admin. Good naming conventions and descriptions will help in the long run.
 
-4. Click **Create** to finish.  
-   Your new collection will appear under the root collection of the domain.  
-   _Insert screenshot: Collections list updated with the new sub-collection_
+   **Display name**
+   ```text
+   Sales
+   ```
 
-5. Once the collection is created, select it and navigate to the **Role assignments** tab.  
-   From here, assign additional roles such as **Data Curator**, **Data Source Admin**, or **Data Reader** as appropriate.  
-   _Insert screenshot: Role assignment interface for a selected collection_
+   **Description**
+   ```text
+   Contains all data assets related to sales activities, including customer tables, views, and reports.
+   ```
+   
+    **Domain admins**
+   ```text
+   admin
+   ```
+   ![Purview Data Map navigation7](../images/module02/2.7.png)
+
+   Once you have filled out the details, click on 'Create' to add the collection.
+
+     ![Purview Data Map navigation4](../images/module02/2.4.1.png)
+
+4. Take a moment to review your newly created collection. You can navigate to the **Role assignments** tab.  
+   As the collection admin, you can assign additional roles - such as Data Curator, Data Source Admin, or Data Reader - to other users as needed to manage access and responsibilities effectively.  
+
+   ![Purview Data Map navigation4](../images/module02/2.8.png)
 
 > Collection roles can be added or updated at any time. Permissions are inherited by default from the parent collection but can be customized if needed.
 
