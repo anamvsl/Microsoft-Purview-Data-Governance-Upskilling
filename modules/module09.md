@@ -2,7 +2,7 @@
 
 [< Previous Module](../modules/module08.md) - **[Home](../README.md)** - [Next Module >](../modules/module10.md)
 
-**⏰ Duration:** 60 minutes
+**⏰ Duration:** 30 minutes
 
 ## :loudspeaker: Introduction
 
@@ -15,10 +15,10 @@
 ## :thinking: Prerequisites
 
 * An [Azure account](https://azure.microsoft.com/free/) with an active subscription.
-* A Microsoft Purview account (see [module 02](../modules/module02.md)).
-* The source data assets have been scanned into the Purview Data Map (see [module 03 Managing Data Sources](../modules/module03.md)).
-* The relevant Governance domains have been defined (see [module 04](../modules/module04.md)).
-* Data products have been created, linked to the source data assets (see [module 05](../modules/module05.md)).
+* A Microsoft Purview account (see [module 01](../modules/module01.md)).
+* The source data assets have been scanned into the Purview Data Map (see [module 03](../modules/module03.md)).
+* The relevant Governance domains have been defined (see [module 05](../modules/module05.md)).
+* Data products have been created, linked to the source data assets (see [module 06](../modules/module06.md)).
 
 ## :dart: Objectives
 
@@ -43,13 +43,13 @@
 
 Data quality life cycle consistes of the following steps:
 
-1. Assign users(s) data quality steward permissions in Unified Catalog to use all data quality features. Please refer this <https://learn.microsoft.com/en-us/purview/data-governance-roles-permissions#how-to-assign-catalog-level-roles/>
+1. **No need to follow this step, this is just for your information. You will already have the right access to the lab**. Assign users(s) data quality steward permissions in Unified Catalog to use all data quality features. Please refer this <https://learn.microsoft.com/en-us/purview/data-governance-roles-permissions#how-to-assign-catalog-level-roles/>
 
-2. Register and scan a data source in your Microsoft Purview Data Map. This step must have been performed earlier. If not, please follow earlier lab
+2. Register and scan a data source in your Microsoft Purview Data Map. **This step must have been performed earlier. If not, please follow relevant module**
 
-3. Add your data asset to a data product. This step must have been performed earlier. If not, please follow earlier lab
-4. Set up a data source connection to prepare your source for data quality assessment. Please follow this [Data Source Connection Configuration](#2-data-source-connection-configuration)
-5. Configure and run data profiling for an asset in your data source -  [Data Profiling](#3-data-profiling)
+3. Add your data asset to a data product. **This step must have been performed earlier. If not, please follow relevant module**
+4. [Set up a data source connection to prepare your source for data quality assessment](#2-data-source-connection-configuration)
+5. [Configure and run data profiling for an asset in your data source](#3-data-profiling)
 6. When profiling is complete, browse the results for each column in the data asset to understand your data's current structure and state.
 7. Set up data quality rules based on the profiling results, and apply them to your data asset. [Data Quality Rules](#4-data-quality-rules)
 8. Configure and run a data quality scan on a data product to assess the quality of all supported assets in the data product. [Data Quality Scanning](#5-data-quality-scanning). Monitor [Data Quality Job Monitoring](#6-data-quality-Job-monitoring
