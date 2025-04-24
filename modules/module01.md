@@ -99,11 +99,11 @@ Creating a Purview account in your organisation for the first time will automati
    ![Screenshot – Final Create](../images/module01/M1.8.png)
 10. Congratulations - you have created a tenant level Purview Account (Enterprise)!
 
-## Deploy Sample SQL Environment
+## Deploy Sample Azure SQL Environment
 
-Now that your Microsoft Purview Enterprise environment is ready, deploy a **sample SQL Server and database** to use throughout the labs.
+Now that your Microsoft Purview Enterprise environment is ready, deploy a **sample Azure SQL Server and database** to use throughout the labs.
 
-This resource will serve as your example data source for cataloging.
+This resource will serve as your example data source for cataloging. It contains the AdventureWorksLT dataset.
 
 Use the button below to launch the script:
 
