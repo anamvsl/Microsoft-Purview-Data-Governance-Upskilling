@@ -19,7 +19,7 @@ This is a modular lab based training series for exploring Microsoft Purview’s 
 | 08     | **Health Controls**                    | Track estate-wide indicators like discoverability, access, and ownership. |
 | 09     | **Data Quality**                       | Define and apply profiling rules to measure and improve data quality. |
 | 10     | **Health Management Actions**          | Assign and track follow-up actions based on estate health or quality scores. |
-
+| 11     | **Health Management Reports**          | Generate and export reports summarizing domain health, data quality trends, and unresolved issues across your environment. |
 ---
 
 ## 🚀 Getting Started
