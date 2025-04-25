@@ -37,7 +37,9 @@ In this module, you’ll learn how to create, publish, and manage glossary terms
 | 1  | [Create the "Customer" Glossary Term](#1-create-the-customer-glossary-term) | Data Steward  |
 | 2  | [Publish the Glossary Term](#2-publish-the-glossary-term)         | Data Steward  |
 | 3  | [Link to Data Products](#3-link-to-data-products)                 | Data Steward  |
-| 4  | [Search and Browse Terms](#4-search-and-browse-terms)             | All users     |
+| 4  | [Create an OKR](#4-create-an-okr)                                 | Data Steward  |
+| 5  | [Publish the OKR](#5-publish-the-okr)                             | Data Steward  |
+| 6  | [Search and Browse (Enterprise Glossary)](#6-search-and-browse-enterprise-glossary) | All Users     |
 
 ---
 
@@ -69,7 +71,7 @@ In this module, you’ll learn how to create, publish, and manage glossary terms
 
 > 🔒 Your term is now in **Draft** state — only visible to stewards and domain owners.
 
-- ![Purview Managing Data Sources](../images/module07/7.6.png)
+  ![Purview Managing Data Sources](../images/module07/7.6.png)
 
 ---
 
@@ -82,7 +84,7 @@ Once your term is ready for broader visibility:
 
 > ✅ The term's status will change from **Draft** to **Published**, making it visible in the Enterprise Glossary (where consumers can search for business concepts like glossary terms and related assets).
 
-- ![Purview Managing Data Sources](../images/module07/7.7.png)
+  ![Purview Managing Data Sources](../images/module07/7.7.png)
 
 ---
 
