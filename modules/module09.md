@@ -81,7 +81,8 @@ Description
 8. Test Connection and if there is no error then "Submit". If there is any error then check the error and resolve it.
      ![Purview Managing Data Sources](../images/module09/9.2.png)
    
-9. Now that the connection is created, to be able to scan data sources, your Microsoft Purview managed identity will need permissions on your data sources. To scan an Azure SQL database, assign db_datareader role to the Microsoft Purview Managed Identity. You can [follow the steps on the source page to assign managed identity permissions](https://learn.microsoft.com/en-us/purview/register-scan-azure-sql-database)
+9. Now that the connection is created, to be able to scan data sources, your Microsoft Purview managed identity will need permissions on your data sources. To scan an Azure SQL database, assign db_datareader role to the Microsoft Purview Managed Identity. You might have already done as part of modul03, if not, follow "module03 -> Configuring Scan" to connect to the Azure SQL database and assign the permission. 
+10. This is just for reference: [follow the steps on the source page to assign managed identity permissions](https://learn.microsoft.com/en-us/purview/register-scan-azure-sql-database)
 
 
 ## 3. Data Profiling
