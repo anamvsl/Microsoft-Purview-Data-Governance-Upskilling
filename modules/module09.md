@@ -42,9 +42,9 @@ Data quality life cycle consistes of the following steps:
 
 1. **No need to follow this step, this is just for your information. You will already have the right access to the lab**. Assign users(s) data quality steward permissions in Unified Catalog to use all data quality features. Please refer this <https://learn.microsoft.com/en-us/purview/data-governance-roles-permissions#how-to-assign-catalog-level-roles/>
 
-2. Register and scan a data source in your Microsoft Purview Data Map. **This step must have been performed earlier. If not, please follow relevant module**
+2. Register and scan a data source in your Microsoft Purview Data Map. **This step must have been performed earlier. If not, please follow the relevant module**
 
-3. Add your data asset to a data product. **This step must have been performed earlier. If not, please follow relevant module**
+3. Add your data asset to a data product. **This step must have been performed earlier. If not, please follow the relevant module**
 4. [Set up a data source connection to prepare your source for data quality assessment](#2-data-source-connection-configuration)
 5. [Configure and run data profiling for an asset in your data source](#3-data-profiling)
 6. When profiling is complete, browse the results for each column in the data asset to understand your data's current structure and state.
