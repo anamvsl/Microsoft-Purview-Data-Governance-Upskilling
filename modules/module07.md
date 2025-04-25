@@ -102,7 +102,78 @@ You can associate glossary terms with related data products:
 
 ---
 
-## 4. Search and Browse Terms
+## 4. Create an OKR
+
+OKRs (**Objectives and Key Results**) help your team set measurable goals within a governance domain. In Microsoft Purview, each OKR includes:
+
+- One **Objective**: a high-level governance goal
+- One or more **Key Results**: numeric indicators that measure progress toward that goal
+
+> 📝 You must have the **Data Steward** role and the **governance domain must be published** before you can create OKRs.
+
+1. In the **Purview portal**, go to **Catalog management** > **Governance domains**.
+2. Select your published governance domain (e.g., `Sales`).
+3. Under the **Business concepts** section, open the **OKRs** card.
+    ![New OKR Button](../images/module07/7.12.png)
+4. Click **+ New OKR**.
+    ![New OKR Button](../images/module07/7.13.png)
+
+---
+
+### 🏁 Define the Objective
+
+- **Name**: `Glossary Coverage - Q2`
+- **Objective**: `Make a concerted effort in publishing glossary for usage across core customer datasets to improve department wide data clarity`
+- **Owner(s)**: Search for `admin` and assign yourself (or a relevant Entra group)
+- **Target date**: Put in any date in the future.
+- 
+    ![New OKR Button](../images/module07/7.14.png)
+  
+💡 The **Objective** should be strategic and qualitative — it's the "what" you're trying to achieve from a governance perspective.
+
+---
+
+### 📊 Add Key Results
+
+Add the below values and hit Create 
+- **Key result**: `Increase glossary term publish rate by 25% for Customer datasets `
+- **Progress status**: `On track`
+- **Progress amount**: `5`
+- **Progress amount**: `25`
+- **Progress amount**: `30`
+
+  ![New OKR Button](../images/module07/7.15.png)
+
+💡 Congratulations! You have created your first OKR! You can add multiple Key Results to track different parts of your objective.
+
+   ![New OKR Button](../images/module07/7.16.png)
+
+---
+
+### 🔗 (Optional) Link Terms or Data Products
+
+You can link data products to the OKR to provide more context and traceability:
+
+- Click **+ Link data product** 
+- Search and select relevant data products (e.g., `Customer Order Summary`) and click on `Add`
+
+  ![New OKR Button](../images/module07/7.17.png)
+
+💡 Linking shows how the OKR contributes to broader governance goals and helps consumers explore related assets.
+
+---
+
+## 5. Publish the OKR
+
+When everything is ready, click **Publish**.
+
+> 🔓 Publishing makes the OKR visible to others in the **Enterprise Glossary**. You can update the **Current value** by selecting the Key result to update progress over time.
+
+  ![New OKR Button](../images/module07/7.19.png)
+
+
+
+## 6. Search and Browse (Enterprise Glossary)
 
 > This section is for **consumer** roles (e.g., analysts, data citizens).
 
@@ -118,11 +189,12 @@ You can associate glossary terms with related data products:
 
 ---
 
+
 ## 🎉 Summary
 
-In this module, you created and published a glossary term for **Customer**, linked it to data products, and explored how terms are discovered and browsed in Microsoft Purview.
+In this module, you created and published a glossary term for **Customer**, linked it to data products, and defined an OKR to track glossary coverage within the Sales governance domain. You also explored how glossary terms and OKRs can be searched and browsed in Microsoft Purview.
 
-Glossary terms help bridge the gap between business and technical users by defining shared meaning and improving data clarity across your organisation.
+Glossary terms help bridge the gap between business and technical users by defining shared meaning. OKRs support accountability by setting measurable governance goals that align with your organisation’s data strategy.
 
 ---
 
