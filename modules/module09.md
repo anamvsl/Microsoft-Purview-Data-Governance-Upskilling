@@ -49,16 +49,17 @@ Data quality life cycle consistes of the following steps:
 5. [Configure and run data profiling for an asset in your data source](#3-data-profiling)
 6. When profiling is complete, browse the results for each column in the data asset to understand your data's current structure and state.
 7. Set up data quality rules based on the profiling results, and apply them to your data asset. [Data Quality Rules](#4-data-quality-rules)
-8. Configure and run a data quality scan on a data product to assess the quality of all supported assets in the data product. [Data Quality Scanning](#5-data-quality-scanning). Monitor [Data Quality Job Monitoring](#6-data-quality-Job-monitoring
-9. Review your scan results to evaluate your data product's current data quality
+8. Configure and run a data quality scan on a data product to assess the quality of all supported assets in the data product. [Data Quality Scanning](#5-data-quality-scanning).
+9. Monitor [Data Quality Job Monitoring](#6-data-quality-Job-monitoring)
+10. Review your scan results to evaluate your data product's current data quality
 
-10. Repeat steps 5-8 periodically over your data asset's life cycle to ensure it's maintaining quality.
+11. Repeat steps 5-8 periodically over your data asset's life cycle to ensure it's maintaining quality.
 
-11. Continually monitor your data quality
+12. Continually monitor your data quality
 
-12. Review data quality actions to identify and resolve problems
+13. Review data quality actions to identify and resolve problems
 
-13. Set data quality notifications to alert you to quality issues.[Data Quality Alerts](#7-data-quality-alerts)
+14. Set data quality notifications to alert you to quality issues.[Data Quality Alerts](#7-data-quality-alerts)
 
 ## 2. Data Source Connection Configuration
 
