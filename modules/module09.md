@@ -34,10 +34,7 @@
 | 4 | [Data Quality Rules](#4-data-quality-rules) | Data Quality Steward |
 | 5 | [Data Quality Scanning](#5-data-quality-scanning) | Data Quality Steward |
 | 6 | [Data Quality Job Monitoring](#6-data-quality-job-monitoring) | Data Quality Steward |
-| 7 | [Data Quality Scoring](#7-data-quality-scoring) | Data Quality Steward |
-| 8 | [Data Quality for Critical Data Elements (CDE)](#8-data-quality-for-critical-data-elements) | Data Quality Steward |
-| 9 | [Data Quality Alerts](#9-data-quality-alerts) | Data Quality Steward |
-| 10 | [Data Quality Actions](#10-data-quality-actions) | Data Quality Steward |
+| 7 | [Data Quality Alerts](#9-data-quality-alerts) | Data Quality Steward |
 
 ## 1 Data Quality lifecycle
 
@@ -53,15 +50,15 @@ Data quality life cycle consistes of the following steps:
 6. When profiling is complete, browse the results for each column in the data asset to understand your data's current structure and state.
 7. Set up data quality rules based on the profiling results, and apply them to your data asset. [Data Quality Rules](#4-data-quality-rules)
 8. Configure and run a data quality scan on a data product to assess the quality of all supported assets in the data product. [Data Quality Scanning](#5-data-quality-scanning). Monitor [Data Quality Job Monitoring](#6-data-quality-Job-monitoring
-9. Review your scan results to evaluate your data product's current data quality.[Data Quality Scoring](#7-data-quality-scoring)
+9. Review your scan results to evaluate your data product's current data quality
 
 10. Repeat steps 5-8 periodically over your data asset's life cycle to ensure it's maintaining quality.
 
 11. Continually monitor your data quality
 
-12. Review data quality actions to identify and resolve problems - [Data Quality Actions](#10-data-quality-actions)
+12. Review data quality actions to identify and resolve problems
 
-13. Set data quality notifications to alert you to quality issues.[Data Quality Alerts](#9-data-quality-alerts)
+13. Set data quality notifications to alert you to quality issues.[Data Quality Alerts](#7-data-quality-alerts)
 
 ## 2. Data Source Connection Configuration
 
@@ -70,19 +67,22 @@ To create connections to data assets, your users must be in the data quality ste
 You need at least read access to the data source for which you are setting up the connection.
 
 1. In Unified Catalog, select Health management, then select Data quality.
-2. Select a governance domain from the list.
+2. Select "Sales" governance domain from the list.
 3. From the Manage dropdown list, select Connections to open connections page.
-   "Screenshot to be added here"
+
+   ![Purview Managing Data Sources](../images/module09/9.1.png)
+
 4. Select New to create a new connection for the data products and data assets of your governance domain.
-   "Screenshot to be added here"
 5. In the right panel, enter the following information:
 Display name
 Description
-6. Select Source type, and select one of the data sources.
-7. Depending on the data source, enter the access details.
-8. Now that the connection is created, to be able to scan data sources, your Microsoft Purview managed identity will need permissions on your data sources. To scan an Azure SQL database, assign db_datareader role to the Microsoft Purview Managed Identity. You can [follow the steps on the source page to assign managed identity permissions](https://learn.microsoft.com/en-us/purview/register-scan-azure-sql-database)
+6. Select Source type as "Azure SQL Database", and select "From Azure Subscription".
+7. Select Subscription name, server name from the drop down list. Select "From Azure Subscription" for select database and select database name from the drop down list
+8. Test Connection and if there is no error then "Submit". If there is any error then check the error and resolve it.
+     ![Purview Managing Data Sources](../images/module09/9.2.png)
+   
+9. Now that the connection is created, to be able to scan data sources, your Microsoft Purview managed identity will need permissions on your data sources. To scan an Azure SQL database, assign db_datareader role to the Microsoft Purview Managed Identity. You can [follow the steps on the source page to assign managed identity permissions](https://learn.microsoft.com/en-us/purview/register-scan-azure-sql-database)
 
-If the test connection is successful, then Submit the connection configuration to complete the connection setup.
 
 ## 3. Data Profiling
 
@@ -97,15 +97,26 @@ Data profiling is the process of examining the data available in different data 
 
 1. Configure a data source connection to the assets you're scanning for data quality if you haven't alrady done so.
 2. From Microsoft Purview Unified Catalog, select Health Management, then select Data quality.
-3. Select a governance domain from the list.
-4. Select a data product to profile a data asset linked to that product.
-5. Select a data asset to navigate into data quality Overview page for profiling.
-6. Select Profile button to run profiling job for the selected data asset.
-7. The AI recommendation engine suggests potentially important columns to run data profiling against. You can deselect recommended columns and/or select more columns to be profiled.
-8. Once you've selected the relevant columns, select Run Profile.
-9. While the job is running, you can track its progress from the data quality monitoring page in the governance domain.
-10. When the job is complete, select the Profile tab from left menu of the asset's data quality page to list browse the profiling result and statistical snapshot. There could be several profile result pages depending on how many columns your data assets have.
-11. Browse the profiling results and statistical measures for each column.
+3. Select "Sales" governance domain from the list.
+4. Select "CustomerOrderSummary" data product to profile a data asset linked to that product.
+        ![Purview Managing Data Sources](../images/module09/9.3.png)
+5. Select "Customer" data asset to navigate into data quality Overview page for profiling.
+        ![Purview Managing Data Sources](../images/module09/9.4.png)
+7. Select Profile button to run profiling job for the selected data asset.
+        ![Purview Managing Data Sources](../images/module09/9.5.png)
+8. The AI recommendation engine suggests potentially important columns to run data profiling against. You can deselect recommended columns and/or select more columns to be profiled.
+    
+9. Once you've selected the relevant columns, select Run Profile.
+
+![Purview Managing Data Sources](../images/module09/9.6.png)
+   
+10. While the job is running, you can track its progress from the data quality monitoring page in the governance domain.
+
+    ![Purview Managing Data Sources](../images/module09/9.7.png)
+    ![Purview Managing Data Sources](../images/module09/9.8.png)
+    
+12. When the job is complete, select the Profile tab from left menu of the asset's data quality page to list browse the profiling result and statistical snapshot. There could be several profile result pages depending on how many columns your data assets have.
+14. Browse the profiling results and statistical measures for each column.
 
 ## 4. Data Quality Rules
 
@@ -150,6 +161,7 @@ Here are some key aspects of data quality rules:
  You have succesfully created a new data quality rule.
 
 **Available data quality rules for information**
+
 Microsoft Purview Data Quality enables configuration of the below rules, these are out of the box rules that offer low-code to no-code way to measure the quality of your data.
 
 |Rule  | Definition|
@@ -175,172 +187,50 @@ Data quality scans review your data assets based on their applied data quality r
 
 ## Run a data quality scan
 
-1. Configure a data source connection to the assets you're scanning for data quality if you haven't alrady done so.
-2. From Microsoft Purview Unified Catalog, select Health Management, then select Data quality.
-3. Select a governance domain from the list.
-4. Select a data product to assess the data quality of the data assets linked to that product.
-5. Select the name of a data asset, which takes you to the data quality Overview page.
-6. You can browse the existing data quality rules and add new rules by selecting Rules. You can browse schema of the data asset by selecting Schema. You can toggle on or off the rules already added.
-7. Run the quality scan by selecting Run quality scan on the overview page.
-8. While the scan is running, you can track its progress from the data [Data Quality Monitoring](#6-data-quality-job-monitoring) page
+1. From Microsoft Purview Unified Catalog, select Health Management, then select Data quality.
+2. Select "Sales" governance domain from the list.
+3. Select "Customer Order Summary" product to assess the data quality of the data assets linked to that product.
+4. Select the "Customer" data asset, which takes you to the data quality Overview page.
+5. You can browse the existing data quality rules and add new rules by selecting Rules. You can browse schema of the data asset by selecting Schema. You can toggle on or off the rules already added.
+6. Run the quality scan by selecting Run quality scan on the overview page.
+ 
+   ![Purview Managing Data Sources](../images/module09/9.14.png)
+   
+7. While the scan is running, you can track its progress from the data [Data Quality Monitoring](#6-data-quality-job-monitoring) page
 
 **Schedule data quality scans**
 Although data quality scans can be run on an ad-hoc basis by selecting the Run quality scan button, in production scenarios it's likely that the source data is being constantly updated and, so we want to make sure we're regularly monitoring its data quality in order to detect any issues. To enable us to manage regularly updating quality scans we can automate the scanning process.
 
 1. From Microsoft Purview Unified Catalog, select Health Management, then select Data quality.
-2. Select a governance domain from the list.
+2. Select "Sales" governance domain from the list.
 3. Select Manage, then select Scheduled scans.
+  ![Purview Managing Data Sources](../images/module09/9.15.png)
+
+
 4. Fill out the form on the Create scheduled scan page. Add a name and description for the source you're setting up the schedule.
 5. Select Continue.
-6. On the Scope tab, select individual data product and assets or all data products and data assets of the entire governance domain.
+ ![Purview Managing Data Sources](../images/module09/9.16.png)
+
+6. On the Scope tab, select "CustomerOrderSummary" data product and "customer" asset within that data product.
 7. Select Continue.
+  ![Purview Managing Data Sources](../images/module09/9.17.png)
 8. Set a schedule based on your preferences and select Continue.
+
+![Purview Managing Data Sources](../images/module09/9.18.png)
+
 9. On the Review tab, select Save (or Save and run to test immediately) to complete scheduling the data quality assessment scan.
 
+![Purview Managing Data Sources](../images/module09/9.19.png)
+
 You can monitor scheduled scans on the [Data Quality Monitoring](#6-data-quality-job-monitoring) page under the Scans tab.
-
-**Delete previous data quality scans and history**
-When you remove a data asset from a data product, if that data asset has a data quality score, you'll first need to delete the data quality score, then remove the data asset from the data product.
-
-When you delete data quality history data, it removes the profile history, the data quality scan history, and data quality rules, but data quality actions won't be deleted.
-
-Follow the steps below to delete previous data quality scans:
-
-1. From Microsoft Purview Unified Catalog, select Health Management menu and Data quality submenu.
-2. Select a governance domain from the list.
-3. Select the ellipsis (...) at the top right of the page.
-4. Select Delete data quality data to delete the history of data quality runs.
 
 ## 6. Data Quality Job Monitoring
 
 Data quality job monitoring enables data quality stewards to see the progress of data profiling, data quality rule generation, and data quality scanning jobs. Both manually configured and scheduled jobs' progress can be viewed from the data quality monitoring page.
 
-## Browse data quality job status
+![Purview Managing Data Sources](../images/module09/9.20.png)
 
-1. From Microsoft Purview Unified Catalog, select the Health Management menu and Data quality submenu.
-2. In the data quality submenu, select a governance domain.
-3. Select the Manage button, and then the Monitoring page from the menu.
-
-Screenshot to be added here
-
-4. The Activities tab is selected as default and you can see a summary of all activities. Use the filters to scope your view by submit time, status, activity type, scan type, or scan name. Select the activity for more details.
-
-Screenshot to be added here
-
-5. You can switch between governance domains from this menu, using the governance domain tab next to the page title.
-6. Select the Scan tab to see the progress of scheduled scans.
-
-Screenshot to be added here
-
-## 7. Data Quality Scoring
-
-After you create data quality rules and run a data quality scan, your data assets receive a data quality score based on results from your rules. This article covers how scores are calculated to give you a deeper understanding of your data quality results, and help you develop action items to improve your data's integrity.
-
-## Understand data quality scores
-
-The goal of data quality rules is to provide a description of the state of the data. In particular, it shows how far away the data is from the ideal state described by the rules. Each rule, when it runs, produces a score that describes how close the data is to its desired state. Most rules are very straight forward; they divide the total number of rows that have passed the assessment by the total number of rows to arrive at the score.
-
-The formula used to calculate the data quality score for a rule against data in a column is:
-
-[(total number of passed records)/(passed records + failed records + miscast records + empty records + ignored records)]
-
-Numerator = number of passed records
-Denominator = total number of records (number of passed records + number of failed records + number of miscast records + number of empty + number of ignored records)
-Passed - number of records that passed an applied rule
-Unevaluable - the columns required to evaluate this rule aren't evaluable
-Failed - number of records that failed an applied rule
-Miscast - the data type of the asset and the type that customer listed it as not matching. It can't be converted to the expressed type.
-Empty - null or blank records
-Ignored - rows didn't participate in the rule evaluation. Customers can express rows to ignore. Like ignore all rows that have email = "n/a" or Ignore all rows where departmentCode = 'test' or 'internal'
-Microsoft Purview Data Quality then gives a sense for the state of each column by generating a column score. This score is the average of the all the scores of the rules on that column.
-
-Screenshot to be added here
-
-Once the column scores are calculated, the formula used to calculate average percentage data quality score for data products and governance domains is:
-
-[(Percentage 1 + Percentage 2) / (Sample size 1 + Sample size 2)] x 100
-
-(The score is multiplied by 100 to make the scores more readable.)
-
-## Example calculation
-
-Let's imagine there's a column that doesn't have the 'Empty/blank fields' rule defined on it. This implies that null values are allowed for this column. So certain rules, like the unique values rule, will filter out null values in that case.
-
-For example: If the asset has 10,000 rows in a table but 3,000 were null and 500 weren't unique then the score would be: ((10000 - 3000 - 500)/(10000 - 3000) )* 100 = 93
-
-The null rows are ignored when evaluating the data and determining a score.
-
-## Specific rule scores
-
-For custom rules there's a similar capability like you might see for the unique values rule, but in this case the filter isn't on nulls but rather the filter expression.
-
-Some rules, like the freshness rule, are either pass or fail. So their scores will be either 0 or 100. And the freshness rule is applied in the data asset level, not in the columns level.
-
-## Rule details and history
-
-You can view the details and history of rule scores by selecting a rule. Selecting a specific rule name and navigating to the rule history tab, you see the trend of the different scan runs for the particular rule.
-
-Rule Details provides information on the number of rows passed, failed, and ignored for the various runs for the particular rule. Rules that are in draft state (OFF state) won't have their scores contribute to the global score. Rules in a draft state won't be run at all during quality scans and so won't have scores.
-
-Screenshot to be added here
-
-Columns and rules have a many-to-many relationship, the same rule can be applied to many columns, and many rules can be applied to the same column. You can view the trend pattern of each rule by viewing the Trend line in the Schema pane.
-
-Screenshot to be added here
-
-Asset level data quality score trends are available for the last 50 runs. This quality score trend helps data quality stewards to monitor data quality trend and fluctuations month over month. Data quality can also trigger alerts for every data quality scan if the quality score doesn't meet the threshold or business expectation.
-
-Screenshot to be added here
-
-Global score is the average of all the production rule defined on the asset. The asset level global score is also rolled up to the data product level and governance domain level. The global score is intended to be the official definition of the state of the data asset, data product, and governance domain in context of quality of data.
-
-Screenshot to be added here
-
-A summary report is created for data quality dimension. This report contains data quality score for each data quality dimension. Global score for the governance domain is published also in this report. You can browse the quality score for each governance domain, data product, and data asset from this Power BI report.
-
-Screenshot to be added here
-
-## 8. Data Quality for Critical Data Elements
-
-Microsoft Purview Data Quality offers an integrated solution for measuring the quality of Critical Data Elements (CDEs), enabling organizations to ensure that these key data elements meet the required standards for accuracy, completeness, consistency, and integrity.
-
-Organizations can establish specific quality thresholds that CDEs must meet to maintain their quality. Those thresholds are applied at the logical CDE level, but trickle down to all the individual columns that comprise the CDE. These rules can encompass various aspects of data quality, including validation, cleansing, standardization, and enrichment. For example: data quality rules might specify that customer addresses must be standardized to a specific format, or that employee IDs must adhere to a certain pattern.
-
-Once data quality rules are applied to CDEs, Microsoft Purview Data Quality systematically evaluates the underlying physical data elements to assess their compliance with these rules. By using Purview Data Quality's integrated approach, organizations can proactively monitor and manage the quality of their critical data elements, ensuring that they remain reliable, accurate, and fit for purpose. This not only enhances decision-making processes but also helps mitigate risks associated with data errors or inconsistencies, ultimately driving better business outcomes.
-
-## Configure data quality for CDEs
-
-1. If you haven't already, create a critical data element(CDE) and add columns.
-2. Open your CDE by:
-2.1. Open Microsoft Purview Unified Catalog and select Data management drop-down and Governance domains submenu.
-2.2. Select a governance domain from the list.
-2.3. Select the Critical data elements tile.
-2.4 Select a critical data element from the list.
-3. Select the Data quality tab in your critical data element.
-
-Screenshot to be added here
-4. Add a new rule to the critical data element by selecting New rule.
-5. Select the data quality rule type you want to use and select Next.
-6. Provide the details necessary for your rule type.
-7. Choose whether you'd like to toggle the rule Off or On.
-8. Select Create.
-
-## Execute data quality rules for CDEs
-
-When a data quality scan is run for an available data asset that has a column associated with a CDE, the data quality rules you've configured for that CDE will produce a score.
-
-1. [Schedule or run a data quality scan](#2-Data-Source-Connection-Configuration") for your data assets associated with your CDE.
-2. [Monitor the progress of the data quality scanning job as it executes](#6-data-quality-job-monitoring), ensuring that it completes without errors or interruptions. Check the applied data quality rules ran successfully from the history snapshot.
-
-Screenshot to be added here
-
-3. [Review the results of the scanning job](#6-data-quality-job-monitoring) to assess the quality of the CDE data asset based on the applied rules.
-
-Screenshot to be added here
-
-4. Analyze the findings from the data quality scanning job to identify any issues, anomalies, or areas of improvement related to the CDE data asset. This could involve cleansing, standardizing, or enriching the data to improve its quality.
-
-## 9. Data Quality Alerts
+## 7. Data Quality Alerts
 
 Data quality alerts notify users about important events or unexpected behavior detected around the quality of the data. When you create alerts for assets, you'll receive email notifications about data quality scores.
 
@@ -351,108 +241,25 @@ To create data quality alerts, your users must be in the data quality steward ro
 1. In Unified Catalog, select Health Management, then select Data quality.
 2. On the Data Quality page, select a governance domain from the list.
 3. From the Manage dropwdown list, select Alerts.
+   ![Purview Managing Data Sources](../images/module09/9.21.png)
 4. Select New to set up a new alert for the data products and data assets in your selected governance domain.
-5. Enter a Display name and a Description.
-6. For Target select any of the following options:
+6. Enter a Display name and a Description.
+7. For Target select any of the following options:
 6.1. Score less than - trigger an alert if the assets' data quality score is less than certain percentage.
 6.2. Score decreased by more than - trigger an alert if the current quality score drops by certain percentage after a new scan is run.
-7. Select the threshold that will trigger an alert.
-8. Select Turn on notifications for failed quality scan to enable alert notifications.
-9. Add a Recipient to send the notification email to the recipient alias.
+8. Select the threshold that will trigger an alert.
+9. Select Turn on notifications for failed quality scan to enable alert notifications.
+10. Add a Recipient to send the notification email to the recipient alias.
 
-Screenshot to be added here
+![Purview Managing Data Sources](../images/module09/9.22.png)
 
 10. Select Continue to define the scope of alerts.
 11. Under Scope, select data products and data assets that are being monitored through this alert and select Save button.
 
-Screenshot to be added here
+![Purview Managing Data Sources](../images/module09/9.23.png)
 
 12. Select Continue to review.
 13. Submit the alerts.
 
-Screenshot to be added here
+![Purview Managing Data Sources](../images/module09/9.24.png)
 
-## Disable data quality alerts
-
-Alerts are enabled by default.
-
-To disable an alert rule:
-
-1. From Microsoft Purview Unified Catalog, select the Data Management menu and Data quality submenu.
-2. Select a governance domain from the list
-3. Select the Manage button and select the Alerts page.
-4. Select the Notifications toggle next to the alert, or open the alert and select the Turn off notifications checkbox.
-
-Screenshot to be added here
-
-## 10. Data Quality Actions
-
-Quality of data is directly linked to the quality of decision making. Good quality data provides business process insights, better understanding of customers, and faster problem identification. Data quality actions identify problems that you should address to improve data quality in your data estate.
-
-## Required roles
-
-To see data quality actions in your environment, your users must at least be in the data quality reader role.
-To see assign and modify actions, your users must at least be in the data quality steward role.
-
-## Data quality action types
-
-In current release, here are list of data quality actions the application is generating:
-
-1. Rule has fallen below default thresholds
-2. Global data quality score has fallen below threshold
-data quality scanning and/or data quality profiling job has failed
-3. data quality scanning and/or data quality profiling job has skipped due to no changes on data since last run
-4. Outlier presence in profiled columns
-5. Too many nulls in the profiled data asset
-
-## Data quality Actions severity
-
-1. Action severity is High if data quality score is less than 25
-2. Action severity is Medium if data quality score is less than 50
-3. Action severity is Low if data quality score is less than 75
-
-## Data quality actions for governance domains
-
-Data quality actions are rolled up from data asset level to the governance domain level. To browse these actions:
-
-1. From Microsoft Purview Unified Catalog, select Health Management, then select Data quality.
-
-2. Select a governance domain from the list.
-
-3. Select the action items button, which also indicates the number of action items for the selected governance domain. You arrive at the Data quality actions flyout pane.
-
-4. Select an action from the list of actions.
-
-5. Assign the action to an individual to investigate and resolve. Recommendations and queries to find the low quality data are provided in the action details.
-
-Screenshot to be added here
-
-6. Update the status if needed, and Save to save your changes.
-
-## Data quality actions for data assets
-
-Data quality actions for a data asset can be browsed and assigned to individuals from the data quality overview page:
-
-1. From Microsoft Purview Unified Catalog, select the Health Management menu and Data quality submenu.
-
-2. Select a governance domain from the list.
-
-3. Select a data product from the list.
-
-4. Select a data asset from the assets attached to your data product.
-
-5. Select the View all link in the Actions tile to navigate the action list of the data asset.
-
-Screenshot to be added here
-
-6. Browse through the list of Active, In progress, Resolved, and My items actions.
-
-Screenshot to be added here
-
-7. Select one of the actions to see the details and assign it to an individual for remedy. Recommendations and queries to find the low quality data are provided in the action details.
-
-Screenshot to be added here
-
-8. Update the status if needed, and Save to save your changes.
-
-[Continue >](../modules/module11.m)
