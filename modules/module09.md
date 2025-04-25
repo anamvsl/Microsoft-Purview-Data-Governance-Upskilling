@@ -36,7 +36,7 @@
 | 6 | [Data Quality Job Monitoring](#6-data-quality-job-monitoring) | Data Quality Steward |
 | 7 | [Data Quality Alerts](#9-data-quality-alerts) | Data Quality Steward |
 
-## 1 Data Quality lifecycle
+## 1. Data Quality lifecycle
 
 Data quality life cycle consistes of the following steps:
 
