@@ -47,19 +47,18 @@ Data quality life cycle consistes of the following steps:
 3. Add your data asset to a data product. **This step must have been performed earlier. If not, please follow the relevant module**
 4. [Set up a data source connection to prepare your source for data quality assessment](#2-data-source-connection-configuration)
 5. [Configure and run data profiling for an asset in your data source](#3-data-profiling)
-6. When profiling is complete, browse the results for each column in the data asset to understand your data's current structure and state.
-7. Set up data quality rules based on the profiling results, and apply them to your data asset. [Data Quality Rules](#4-data-quality-rules)
-8. Configure and run a data quality scan on a data product to assess the quality of all supported assets in the data product. [Data Quality Scanning](#5-data-quality-scanning).
-9. Monitor [Data Quality Job Monitoring](#6-data-quality-Job-monitoring)
-10. Review your scan results to evaluate your data product's current data quality
+6. Set up data quality rules based on the profiling results, and apply them to your data asset. [Data Quality Rules](#4-data-quality-rules)
+7. Configure and run a data quality scan on a data product to assess the quality of all supported assets in the data product. [Data Quality Scanning](#5-data-quality-scanning).
+8. Monitor [Data Quality Job Monitoring](#6-data-quality-Job-monitoring)
+9. Review your scan results to evaluate your data product's current data quality
 
-11. Repeat steps 5-8 periodically over your data asset's life cycle to ensure it's maintaining quality.
+10. Repeat steps 5-8 periodically over your data asset's life cycle to ensure it's maintaining quality.
 
-12. Continually monitor your data quality
+11. Continually monitor your data quality
 
-13. Review data quality actions to identify and resolve problems
+12. Review data quality actions to identify and resolve problems
 
-14. Set data quality notifications to alert you to quality issues.[Data Quality Alerts](#7-data-quality-alerts)
+13. Set data quality notifications to alert you to quality issues.[Data Quality Alerts](#7-data-quality-alerts)
 
 ## 2. Data Source Connection Configuration
 
@@ -118,6 +117,8 @@ Data profiling is the process of examining the data available in different data 
     
 12. When the job is complete, select the Profile tab from left menu of the asset's data quality page to list browse the profiling result and statistical snapshot. There could be several profile result pages depending on how many columns your data assets have.
 14. Browse the profiling results and statistical measures for each column.
+
+![Purview Managing Data Sources](../images/module09/9.25.png)
 
 ## 4. Data Quality Rules
 
