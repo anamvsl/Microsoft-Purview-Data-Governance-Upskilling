@@ -248,21 +248,23 @@ To create data quality alerts, your users must be in the data quality steward ro
 4. Select New to set up a new alert for the data products and data assets in your selected governance domain.
 6. Enter a Display name and a Description.
 7. For Target select any of the following options:
-6.1. Score less than - trigger an alert if the assets' data quality score is less than certain percentage.
-6.2. Score decreased by more than - trigger an alert if the current quality score drops by certain percentage after a new scan is run.
+   
+7.1. Score less than - trigger an alert if the assets' data quality score is less than certain percentage.
+7.2. Score decreased by more than - trigger an alert if the current quality score drops by certain percentage after a new scan is run.
+
 8. Select the threshold that will trigger an alert.
 9. Select Turn on notifications for failed quality scan to enable alert notifications.
 10. Add a Recipient to send the notification email to the recipient alias.
 
 ![Purview Managing Data Sources](../images/module09/9.22.png)
 
-10. Select Continue to define the scope of alerts.
-11. Under Scope, select data products and data assets that are being monitored through this alert and select Save button.
+11. Select Continue to define the scope of alerts.
+12. Under Scope, select data products and data assets that are being monitored through this alert and select Save button.
 
 ![Purview Managing Data Sources](../images/module09/9.23.png)
 
-12. Select Continue to review.
-13. Submit the alerts.
+13. Select Continue to review.
+14. Submit the alerts.
 
 ![Purview Managing Data Sources](../images/module09/9.24.png)
 
